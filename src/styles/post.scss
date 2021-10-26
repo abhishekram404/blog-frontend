@@ -71,7 +71,7 @@
         }
 
         display: grid;
-        grid-template-columns: 80px 500px;
+        grid-template-columns: minmax(50px, 80px) minmax(200px, 500px);
         align-items: start;
         .avatar {
           display: flex;
