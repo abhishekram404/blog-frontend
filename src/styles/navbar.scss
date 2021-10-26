@@ -1,26 +1,31 @@
 @import "globals.scss";
 .navbar {
-  a {
-    text-decoration: none;
-    color: unset;
+  .container {
+    max-width: 1200px;
+
+    a {
+      text-decoration: none;
+      color: unset;
+      font-family: "Montserrat";
+      font-weight: 600;
+      font-size: 1.8rem;
+    }
   }
 }
-
 .navbar_dark {
-  border-bottom: 2px solid black;
+  border-bottom: 2px solid $grey;
 
   background-color: $black;
-  color: #eee;
+  color: $textHeading;
   .navbar_brand {
-    color: #eee;
+    color: $textHeading;
   }
 }
 
 .navbar_light {
-  border-bottom: 1px solid #1e1e1e;
-
+  border-bottom: 1px solid $darkGrey;
   background-color: $white;
-  color: #1e1e1e;
+  color: $black;
   .navbar_brand {
     color: #1e1e1e;
   }

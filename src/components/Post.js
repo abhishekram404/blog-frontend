@@ -2,9 +2,17 @@ import clsx from "clsx";
 import React from "react";
 import "styles/post.scss";
 import { HiOutlineDotsVertical } from "react-icons/hi";
+import {
+  MdThumbUpOffAlt,
+  MdThumbUp,
+  MdOutlineModeComment,
+  MdOutlineShare,
+} from "react-icons/md";
+import featuredImage from "assets/featured.jpg";
+import CommentSection from "./CommentSection";
 export default function Post() {
   return (
-    <div className={clsx("post py-4 p-2 p-sm-4", "post_light")}>
+    <div className={clsx("post py-4 p-2 p-sm-4", "post_dark")}>
       <div className="container ">
         <article>
           <div className={clsx("title-bar row align-items-start ")}>
@@ -23,6 +31,10 @@ export default function Post() {
               Article by <b>Abhishek Ram</b>
             </span>
             &nbsp; &bull; &nbsp; Published 2 min ago &nbsp; &bull; &nbsp; Crime
+          </div>
+
+          <div className="featured-image">
+            <img src={featuredImage} className="" alt="Featured" />
           </div>
 
           <p>
@@ -175,6 +187,21 @@ export default function Post() {
             and also flea bomb a home. That is why I don’t like cats.
           </p>
         </article>
+        <div className="interaction-row">
+          <span className="interaction-btn like">
+            <MdThumbUpOffAlt />
+            <span>237</span>
+          </span>
+          <span className="interaction-btn comment">
+            <MdOutlineModeComment />
+            <span>237</span>
+          </span>
+          <span className="interaction-btn share">
+            <MdOutlineShare />
+          </span>
+        </div>
+        <br />
+        <CommentSection />
       </div>
     </div>
   );

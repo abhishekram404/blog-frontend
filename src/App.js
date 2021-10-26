@@ -5,7 +5,7 @@ import clsx from "clsx";
 import "styles/app.scss";
 function App() {
   return (
-    <div className={clsx("app", "app_light")}>
+    <div className={clsx("app", "app_dark")}>
       <Navbar />
       <Post />
     </div>
