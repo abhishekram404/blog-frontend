@@ -1,0 +1,11 @@
+@import "globals.scss";
+.app {
+  min-height: 100vh;
+}
+
+.app_dark {
+  background-color: $black;
+}
+.app_light {
+  background-color: $white;
+}

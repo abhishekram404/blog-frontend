@@ -1,3 +1,4 @@
+@import "globals.scss";
 .navbar {
   a {
     text-decoration: none;
@@ -6,7 +7,9 @@
 }
 
 .navbar_dark {
-  background-color: black;
+  border-bottom: 2px solid black;
+
+  background-color: $black;
   color: #eee;
   .navbar_brand {
     color: #eee;
@@ -14,7 +17,9 @@
 }
 
 .navbar_light {
-  background-color: #eee;
+  border-bottom: 1px solid #1e1e1e;
+
+  background-color: $white;
   color: #1e1e1e;
   .navbar_brand {
     color: #1e1e1e;

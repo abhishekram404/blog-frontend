@@ -1,0 +1,68 @@
+@import "globals.scss";
+
+.post {
+  article {
+    .info-row {
+      font-family: "Lato";
+      font-weight: 400;
+    }
+    .title-bar {
+      .title-row {
+        .post-title {
+          font-family: "Poppins", sans-serif;
+        }
+      }
+      .options-button {
+        font-size: 2rem;
+        cursor: pointer;
+      }
+    }
+
+    p {
+      line-height: 30px;
+      font-weight: 400;
+      // letter-spacing: 0.5px;
+      word-spacing: 2px;
+      font-family: "Lato", sans-serif;
+    }
+  }
+}
+
+.post_dark {
+  article {
+    .info-row {
+      color: #acacac;
+    }
+    .title-bar {
+      .title-row {
+        .post-title {
+          color: #ebe8e8;
+        }
+      }
+      .options-button {
+        color: #fff;
+      }
+    }
+    p {
+      color: #e1e1e1;
+    }
+  }
+}
+
+.post_light {
+  article {
+    .info-row {
+      color: #505050;
+    }
+    .title-bar {
+      .title-row {
+        .post-title {
+          color: #1e1e1e;
+        }
+      }
+    }
+    p {
+      color: #2e2e2e;
+    }
+  }
+}
