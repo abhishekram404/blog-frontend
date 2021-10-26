@@ -10,9 +10,17 @@ import {
 } from "react-icons/md";
 import featuredImage from "assets/featured.jpg";
 import CommentSection from "./CommentSection";
+import { useSelector } from "react-redux";
+
 export default function Post() {
+  const { dark } = useSelector((state) => state.common);
   return (
-    <div className={clsx("post py-4 p-2 p-sm-4", "post_dark")}>
+    <div
+      className={clsx(
+        "post py-4 p-2 p-sm-4",
+        dark ? "post_dark" : "post_light"
+      )}
+    >
       <div className="container ">
         <article>
           <div className={clsx("title-bar row align-items-start ")}>

@@ -10,6 +10,16 @@
       font-weight: 600;
       font-size: 1.8rem;
     }
+    .navbar-nav {
+      .dark-mode-switch {
+        padding: 5px;
+        border-radius: 50%;
+        cursor: pointer;
+        .icon {
+          font-size: 1.5rem;
+        }
+      }
+    }
   }
 }
 .navbar_dark {
@@ -20,6 +30,14 @@
   .navbar_brand {
     color: $textHeading;
   }
+  .navbar-nav {
+    .dark-mode-switch {
+      background-color: $darkGrey;
+      .icon {
+        color: $textGrey;
+      }
+    }
+  }
 }
 
 .navbar_light {
@@ -28,5 +46,13 @@
   color: $black;
   .navbar_brand {
     color: #1e1e1e;
+  }
+  .navbar-nav {
+    .dark-mode-switch {
+      background-color: $textGrey;
+      .icon {
+        color: $black;
+      }
+    }
   }
 }
