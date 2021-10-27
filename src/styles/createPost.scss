@@ -1,0 +1,160 @@
+@import "globals.scss";
+.create_post {
+  .container {
+    max-width: 1200px;
+    > h2 {
+      margin-bottom: 20px;
+    }
+    form {
+      border-radius: 10px;
+      input,
+      textarea {
+        height: min-content;
+        background-color: transparent;
+        border: none;
+        resize: none;
+        font-family: "Poppins";
+        max-height: fit-content;
+      }
+      > .mb-3 {
+        .post-title {
+          //   height: auto;
+          //   padding: 2rem;
+          font-size: 3rem;
+          &::placeholder {
+            font-size: 3rem;
+          }
+        }
+      }
+      .tags-cont {
+        .tags {
+          .ReactTags__selected {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            .tag {
+              margin: 5px;
+              font-family: "Poppins";
+              padding: 5px 8px;
+              font-size: 0.8rem;
+              border-radius: 20px;
+              transition: 0.3s;
+
+              //   color: ;
+              .tagRemoveBtn {
+                border-radius: 50%;
+                border: none;
+                outline: none;
+                // width: 25px;
+                // height: 25px;
+                margin-left: 5px;
+                padding: 0px 6px;
+              }
+            }
+            .tagInput {
+              transition: 0.3s;
+
+              margin-left: 10px;
+              display: inline-block;
+              .tagInputField {
+                border-radius: 5px;
+                padding: 3px 6px;
+                font-size: 0.9rem;
+                // border: 0.5px solid rgba($color: $grey, $alpha: 0.4);
+                outline: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.create_post_dark {
+  .container {
+    > h2 {
+      color: $textHeading;
+    }
+    form {
+      border: 1px solid $grey;
+      background-color: $darkGrey;
+      input,
+      textarea {
+        color: $textHeading;
+      }
+      label {
+        color: $textHeading;
+      }
+      > .mb-3 {
+        .post-title {
+          //   height: auto;
+          //   padding: 2rem;
+
+          &::placeholder {
+          }
+        }
+      }
+      .tags-cont {
+        .tags {
+          .ReactTags__selected {
+            .tag {
+              background-color: $grey;
+              box-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+              color: $textHeading;
+
+              .tagRemoveBtn {
+                background-color: $textGrey;
+              }
+            }
+            .tagInput {
+              .tagInputField {
+                background-color: $grey;
+                border: 0.5px solid rgba($color: $grey, $alpha: 0.4);
+                &::placeholder {
+                  color: $textHeading;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.create_post_light {
+  .container {
+    form {
+      background-color: white;
+      border: 1px solid rgba($color: $textGrey, $alpha: 0.4);
+      input,
+      textarea {
+        color: $darkGrey;
+      }
+      > .mb-3 {
+        .post-title {
+        }
+      }
+      .tags-cont {
+        .tags {
+          .ReactTags__selected {
+            .tag {
+              background-color: $textGrey;
+              box-shadow: 1px 1px 1px rgba($color: #000000, $alpha: 0.5);
+              color: $black;
+
+              .tagRemoveBtn {
+              }
+            }
+            .tagInput {
+              .tagInputField {
+                border: 0.5px solid rgba($color: $grey, $alpha: 0.4);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
