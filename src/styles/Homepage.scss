@@ -1,0 +1,150 @@
+@import "globals.scss";
+
+.homepage {
+  .container {
+    > .row {
+      > .feed {
+        > h2 {
+          font-family: "Poppins";
+          margin-bottom: 20px;
+        }
+        .feed-item {
+          border-radius: 10px;
+          overflow: hidden;
+          .thumbnail-cont {
+            max-height: 300px;
+            width: 100%;
+            overflow: hidden;
+          }
+          .card-body {
+            .post-title {
+              font-family: "Poppins";
+            }
+            .post-body {
+              font-family: "Lato";
+            }
+            > .row {
+              justify-content: flex-start;
+              > div {
+                .profile-pic {
+                  width: 100%;
+                  height: 100%;
+                }
+                .author-name {
+                  font-family: "Lato";
+                }
+                .author-username {
+                  color: $grey;
+                  font-family: "Poppins";
+                  font-size: 0.8rem;
+                }
+                .follow-btn {
+                  text-decoration: none;
+                  font-size: 0.9rem;
+                  font-family: "Lato";
+                  > .icon {
+                    color: $darkGrey;
+                    font-size: 1.5rem;
+                  }
+                }
+              }
+              > .profile-pic-cont {
+                height: 50px;
+                width: 50px;
+                border-radius: 50%;
+                overflow: hidden;
+                display: grid;
+                place-items: center;
+                padding: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.homepage_dark {
+  .container {
+    > .row {
+      > .feed {
+        > h2 {
+          color: $textHeading;
+        }
+        .feed-item {
+          background-color: $darkGrey;
+          color: $white;
+
+          .post-cont {
+            border-bottom: 1px solid $textGrey;
+          }
+          .card-body {
+            border-bottom-color: $grey;
+            .post-title {
+              color: $textHeading;
+            }
+            .post-body {
+              color: $textGrey;
+            }
+            > .row {
+              > div {
+                .author-name {
+                  color: $textHeading;
+                }
+                .author-username {
+                  color: $textGrey;
+                }
+                .follow-btn {
+                  > .icon {
+                    color: $textHeading;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.homepage_light {
+  .container {
+    > .row {
+      > .feed {
+        > h2 {
+          color: $darkGrey;
+        }
+        .feed-item {
+          .post-cont {
+            border-bottom: 1px solid $textHeading;
+          }
+          .card-body {
+            .post-title {
+              color: $darkGrey;
+            }
+            .post-body {
+              color: $grey;
+            }
+            > .row {
+              > div {
+                .author-name {
+                  color: $darkGrey;
+                }
+                .author-username {
+                  color: $grey;
+                }
+                .follow-btn {
+                  > .icon {
+                    color: $darkGrey;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

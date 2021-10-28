@@ -12,7 +12,7 @@ export default function Navbar() {
   return (
     <div
       className={clsx(
-        "navbar px-4 py-2",
+        "navbar px-1 px-md-4 py-2",
         dark ? "navbar_dark" : "navbar_light"
       )}
     >

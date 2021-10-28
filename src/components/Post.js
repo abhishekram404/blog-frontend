@@ -17,7 +17,7 @@ export default function Post() {
   return (
     <div
       className={clsx(
-        "post py-4 p-2 p-sm-4",
+        "post py-4 px-1 p-md-4",
         dark ? "post_dark" : "post_light"
       )}
     >

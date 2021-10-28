@@ -4,3 +4,18 @@ $darkGrey: #242526;
 $white: #f1f0f0;
 $textHeading: #e4e6eb;
 $textGrey: #b0b3b8;
+
+* {
+  font-family: sans-serif;
+}
+.container {
+  max-width: 1000px;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+  &:hover {
+    color: unset;
+  }
+}
