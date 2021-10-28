@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import { Link } from "react-router-dom";
 import "styles/navbar.scss";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,13 +17,29 @@ export default function Navbar() {
       )}
     >
       <div className="container">
-        <a href="#" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           Blog
-        </a>
-        <div className="navbar-nav">
-          <div
-            className="nav-items dark-mode-switch"
-            role="button"
+        </Link>
+        <ul className="navbar-nav flex-row">
+          <li className="nav-item me-3">
+            <Link
+              to="/create-post"
+              className="nav-link btn btn-primary text-light px-2"
+            >
+              Create post
+            </Link>
+          </li>
+          <li className="nav-item me-3">
+            <Link
+              to="/register"
+              className="nav-link btn btn-primary text-light px-2"
+            >
+              Register
+            </Link>
+          </li>
+          <li
+            className="nav-item  dark-mode-switch"
+            // role="button"
             onClick={() => dispatch(toggle_dark_mode())}
           >
             {dark ? (
@@ -30,8 +47,8 @@ export default function Navbar() {
             ) : (
               <MdDarkMode className="icon" />
             )}
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   );
