@@ -9,8 +9,11 @@
       font-size: 1.8rem;
     }
     .navbar-nav {
-      > a {
+      a {
         text-decoration: none;
+      }
+      .cta {
+        color: $white;
       }
       .dark-mode-switch {
         padding: 5px;
@@ -36,6 +39,11 @@
     color: $textHeading;
   }
   .navbar-nav {
+    li {
+      a {
+        color: $textHeading;
+      }
+    }
     .dark-mode-switch {
       background-color: $darkGrey;
       .icon {
@@ -53,6 +61,11 @@
     color: #1e1e1e;
   }
   .navbar-nav {
+    li {
+      a {
+        color: $darkGrey;
+      }
+    }
     .dark-mode-switch {
       background-color: $textGrey;
       .icon {

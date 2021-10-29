@@ -24,16 +24,18 @@ export default function Navbar() {
           <li className="nav-item me-3">
             <Link
               to="/create-post"
-              className="nav-link btn btn-primary text-light px-2"
+              className="cta nav-link btn btn-primary px-2"
             >
               Create post
             </Link>
           </li>
           <li className="nav-item me-3">
-            <Link
-              to="/register"
-              className="nav-link btn btn-primary text-light px-2"
-            >
+            <Link to="/login" className="nav-link btn btn-link px-2">
+              Login
+            </Link>
+          </li>
+          <li className="nav-item me-3">
+            <Link to="/register" className="cta nav-link btn btn-primary  px-2">
               Register
             </Link>
           </li>
