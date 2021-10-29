@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CreatePost from "components/CreatePost";
 import Homepage from "components/Homepage";
+import Register from "components/Register";
+import Login from "components/Login";
 function App() {
   const { dark } = useSelector((state) => state.common);
   return (
@@ -17,6 +19,8 @@ function App() {
         <Switch>
           <Route path="/" exact component={Homepage} />
           <Route path="/post" component={Post} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
           <Route path="/create-post" component={CreatePost} />
         </Switch>
       </div>

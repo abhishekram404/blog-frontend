@@ -26,9 +26,11 @@ export default function Homepage() {
             <FeedItem />
             <FeedItem />
           </div>
-          <div className="col-3  card p-3 d-none d-md-block">
+
+          {/* Sidebar is commented for now */}
+          {/* <div className="col-3  card p-3 d-none d-md-block">
             <HomeSidebar />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

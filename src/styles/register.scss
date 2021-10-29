@@ -1,0 +1,63 @@
+@import "globals.scss";
+
+.register {
+  .container {
+    min-height: 100vh;
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    form {
+      > h2 {
+        font-family: "Montserrat";
+      }
+      max-width: 500px;
+      width: 450px;
+      .mb-3 {
+        label,
+        input {
+          font-family: "Poppins";
+        }
+      }
+      .submit-btn {
+        font-family: "Poppins";
+      }
+    }
+  }
+}
+
+.register_dark {
+  .container {
+    form {
+      > h2 {
+        color: $textHeading;
+      }
+      background-color: $darkGrey;
+      .mb-3 {
+        label,
+        input {
+          color: $textGrey;
+        }
+        input {
+          background-color: $grey;
+          border-color: $black;
+        }
+      }
+    }
+  }
+}
+
+.register_light {
+  .container {
+    form {
+      > h2 {
+        color: $darkGrey;
+      }
+      .mb-3 {
+        label,
+        input {
+          color: $grey;
+        }
+      }
+    }
+  }
+}
