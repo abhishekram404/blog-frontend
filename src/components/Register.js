@@ -6,12 +6,26 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 export default function Register() {
   const { dark } = useSelector((state) => state.common);
-  const initialValues = { name: "", email: "", password: "", repassword: "" };
+  const initialValues = {
+    name: "",
+    username: "",
+    email: "",
+    password: "",
+    repassword: "",
+  };
   const registerSchema = Yup.object({
     name: Yup.string()
       .min(3, "Name must be at least 3 characters long.")
       .max(60, "Name too long!")
       .required("Name is required."),
+    username: Yup.string()
+      .min(3, "Username too short.")
+      .max(32, "Username too long.")
+      // .matches(
+      //   /[a-z]*/g,
+      //   "Username must only contain lowercase letters, numbers, and underscore."
+      // )
+      .required("Username is required."),
     email: Yup.string().email("Invalid email").required("Email is required."),
     password: Yup.string()
       .min(6, "Password too short.")
@@ -57,6 +71,22 @@ export default function Register() {
                   <ErrorMessage name="name" />
                 </small>
               </div>
+
+              <div className="mb-3">
+                <label htmlFor="name" className="form-label">
+                  Username <span className="text-danger">*</span>
+                </label>
+                <Field
+                  type="text"
+                  className="form-control shadow-none"
+                  required={true}
+                  name="username"
+                />
+                <small className="error-message text-danger">
+                  <ErrorMessage name="username" />
+                </small>
+              </div>
+
               <div className="mb-3">
                 <label htmlFor="email" className="form-label">
                   Email <span className="text-danger">*</span>
