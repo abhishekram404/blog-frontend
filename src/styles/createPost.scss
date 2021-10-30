@@ -94,6 +94,15 @@
           }
         }
       }
+      .category-cont {
+        color: $textHeading;
+        select {
+          color: $textHeading;
+          background-color: $darkGrey;
+          border-color: $grey;
+        }
+      }
+
       .tags-cont {
         .tags {
           .ReactTags__selected {
