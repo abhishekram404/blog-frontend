@@ -1,16 +1,24 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
-// import cors and set localhost:3000 as the origin
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
+const bodyParser = require("body-parser");
 app.use(
   cors({
     origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
+app.use(
+  bodyParser.json({
+    extended: true,
   })
 );
 
-mongoose.connect("mongodb://localhost/blog", (err) => {
+app.use(bodyParser.urlencoded({ extended: true }));
+
+mongoose.connect("mongodb://localhost:27017/blog", (err) => {
   if (err) {
     console.log("Error connecting to database");
     return;

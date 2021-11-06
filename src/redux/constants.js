@@ -1,1 +1,7 @@
 export const TOGGLE_DARK_MODE = "TOGGLE_DARK_MODE";
+export const SEND_REGISTER_REQUEST = "SEND_REGISTER_REQUEST";
+export const REGISTER_SUCCESSFUL = "REGISTER_SUCCESSFUL";
+export const REGISTER_FAILED = "REGISTER_FAILED";
+export const ERROR = "ERROR";
+export const SUCCESS = "SUCCESS";
+export const ALERT = "ALERT";
