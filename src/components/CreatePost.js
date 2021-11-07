@@ -40,7 +40,6 @@ export default function CreatePost() {
   const debounce = useCallback(
     _.debounce((value) => {
       setFormData(Object.assign(formData, { content: value }));
-      console.log(formData);
     }, 300),
     []
   );
@@ -51,7 +50,6 @@ export default function CreatePost() {
       tagsList.push(tagObj.id);
     });
     setFormData(Object.assign(formData, values, { tags: tagsList }));
-    console.log(formData);
   };
   return (
     <div

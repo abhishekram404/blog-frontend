@@ -45,13 +45,12 @@ module.exports.register = async (req, res) => {
       password: hashedPassword,
     });
     const token = await newUser.generateToken();
-    console.log(token);
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge: 900000000,
       secure: false,
     });
-    res.cookie("isUserLoggedIn", true, {
+    res.cookie("isUserLoggedIn", 1, {
       httpOnly: false,
       maxAge: 900000000,
       secure: false,
@@ -61,7 +60,6 @@ module.exports.register = async (req, res) => {
       message: "Registration successful",
     });
   } catch (error) {
-    console.log(error);
     res.status(500).send({
       success: false,
       message: error.message,
@@ -101,7 +99,7 @@ module.exports.login = async (req, res) => {
       maxAge: 900000000,
       secure: false,
     });
-    res.cookie("isUserLoggedIn", true, {
+    res.cookie("isUserLoggedIn", 1, {
       httpOnly: false,
       maxAge: 900000000,
       secure: false,

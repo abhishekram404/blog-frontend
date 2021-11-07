@@ -1,6 +1,8 @@
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
 import Post from "components/Post";
+import ProtectedRoute from "components/ProtectedRoute";
 import clsx from "clsx";
 import "styles/app.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,16 +13,39 @@ import Register from "components/Register";
 import Login from "components/Login";
 import { useEffect } from "react";
 import { useAlert } from "react-alert";
-import { INFO, CLEAR_ALERT, ERROR, SUCCESS } from "redux/constants";
-
+import {
+  INFO,
+  CLEAR_ALERT,
+  ERROR,
+  SUCCESS,
+  AUTHENTICATED,
+  NOT_AUTHENTICATED,
+} from "redux/constants";
+import Cookies from "js-cookie";
 function App() {
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { dark } = useSelector((state) => state.common);
+  const { dark, isUserLoggedIn } = useSelector((state) => state.common);
   const { type, message } = useSelector((state) => state.alert);
   const alertOnClose = () => {
     dispatch({ type: CLEAR_ALERT });
   };
+
+  const [authenticated, setAuthenticated] = useState(() =>
+    Boolean(Number(Cookies.get("isUserLoggedIn")))
+  );
+  useEffect(() => {
+    if (!authenticated) {
+      return dispatch({
+        type: NOT_AUTHENTICATED,
+      });
+    } else {
+      return dispatch({
+        type: AUTHENTICATED,
+      });
+    }
+  }, [authenticated]);
+
   useEffect(() => {
     switch (type) {
       case SUCCESS:
@@ -42,6 +67,7 @@ function App() {
         break;
     }
   }, [type, message]);
+
   return (
     <Router>
       <div className={clsx("app", dark ? "app_dark" : "app_light")}>
@@ -52,7 +78,7 @@ function App() {
           <Route path="/post" component={Post} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
-          <Route path="/create-post" component={CreatePost} />
+          <ProtectedRoute path="/create-post" component={CreatePost} />
         </Switch>
       </div>
     </Router>

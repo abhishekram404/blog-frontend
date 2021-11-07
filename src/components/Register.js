@@ -7,10 +7,12 @@ import * as Yup from "yup";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ERROR, SUCCESS, ALERT } from "redux/constants";
-export default function Register() {
+import { Redirect, useLocation } from "react-router";
+export default function Register(props) {
   const dispatch = useDispatch();
+  const location = useLocation();
   const [isSubmitting, setSubmitting] = useState(false);
-  const { dark } = useSelector((state) => state.common);
+  const { dark, isUserLoggedIn } = useSelector((state) => state.common);
   const initialValues = {
     name: "",
     username: "",
@@ -56,6 +58,11 @@ export default function Register() {
       dispatch({ type: ERROR, payload: error.response.data.message });
     }
   };
+
+  if (isUserLoggedIn) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div
       className={clsx(

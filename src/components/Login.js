@@ -5,12 +5,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import { ERROR, SUCCESS } from "redux/constants";
+import {
+  AUTHENTICATED,
+  NOT_AUTHENTICATED,
+  ERROR,
+  SUCCESS,
+} from "redux/constants";
+import { Redirect } from "react-router";
 
 export default function Login() {
   const [isSubmitting, setSubmitting] = useState(false);
+
   const dispatch = useDispatch();
-  const { dark } = useSelector((state) => state.common);
+  const { dark, isUserLoggedIn } = useSelector((state) => state.common);
   const loginSchema = Yup.object({
     email: Yup.string().email("Invalid email").required("Required"),
     password: Yup.string().required("Required"),
@@ -25,17 +32,26 @@ export default function Login() {
 
       switch (data.success) {
         case true:
+          dispatch({ type: AUTHENTICATED });
           return dispatch({ type: SUCCESS, payload: data.message });
         case false:
+          dispatch({ type: NOT_AUTHENTICATED });
           return dispatch({ type: ERROR, payload: data.message });
         default:
+          dispatch({ type: NOT_AUTHENTICATED });
           return dispatch({ type: ERROR, payload: "Something went wrong!" });
       }
     } catch (error) {
       setSubmitting(false);
+      dispatch({ type: NOT_AUTHENTICATED });
       dispatch({ type: ERROR, payload: error.response.data.message });
     }
   };
+
+  if (isUserLoggedIn) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div
       className={clsx(
