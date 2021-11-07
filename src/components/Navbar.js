@@ -7,8 +7,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggle_dark_mode } from "redux/actions/commonActions";
 export default function Navbar() {
   const dispatch = useDispatch();
+  const { dark, isUserLoggedIn } = useSelector((state) => state.common);
 
-  const { dark } = useSelector((state) => state.common);
   return (
     <div
       className={clsx(
@@ -21,24 +21,37 @@ export default function Navbar() {
           Blog
         </Link>
         <ul className="navbar-nav flex-row">
-          <li className="nav-item me-3">
-            <Link
-              to="/create-post"
-              className="cta nav-link btn btn-primary px-2"
-            >
-              Create post
-            </Link>
-          </li>
-          <li className="nav-item me-3">
-            <Link to="/login" className="nav-link btn btn-link px-2">
-              Login
-            </Link>
-          </li>
-          <li className="nav-item me-3">
-            <Link to="/register" className="cta nav-link btn btn-primary  px-2">
-              Register
-            </Link>
-          </li>
+          {isUserLoggedIn ? (
+            <>
+              <li className="nav-item me-3">
+                <Link
+                  to="/create-post"
+                  className="cta nav-link btn btn-primary px-2"
+                >
+                  Create post
+                </Link>
+              </li>
+              <li className="nav-item me-3">
+                <button className="nav-link btn btn-link  px-2">Logout</button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li className="nav-item me-3">
+                <Link to="/login" className="nav-link btn btn-link px-2">
+                  Login
+                </Link>
+              </li>
+              <li className="nav-item me-3">
+                <Link
+                  to="/register"
+                  className="cta nav-link btn btn-primary  px-2"
+                >
+                  Register
+                </Link>
+              </li>
+            </>
+          )}
           <li
             className="nav-item  dark-mode-switch"
             // role="button"
