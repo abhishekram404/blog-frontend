@@ -115,3 +115,23 @@ module.exports.login = async (req, res) => {
     });
   }
 };
+
+module.exports.logout = async (req, res) => {
+  try {
+    res.clearCookie("isUserLoggedIn");
+    res.clearCookie("jwt");
+    return res.status(200).send({
+      success: true,
+      message: "Logged out successfully",
+      details: null,
+    });
+  } catch (error) {
+    res.clearCookie("isUserLoggedIn");
+    res.clearCookie("jwt");
+    return res.status(500).send({
+      success: false,
+      message: "Logged out successfully",
+      details: null,
+    });
+  }
+};

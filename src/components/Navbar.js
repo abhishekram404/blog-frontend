@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "styles/navbar.scss";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
-import { toggle_dark_mode } from "redux/actions/commonActions";
+import { logout, toggle_dark_mode } from "redux/actions/commonActions";
 export default function Navbar() {
   const dispatch = useDispatch();
   const { dark, isUserLoggedIn } = useSelector((state) => state.common);
@@ -31,7 +31,11 @@ export default function Navbar() {
                   Create post
                 </Link>
               </li>
-              <li className="nav-item me-3">
+              <li
+                className="nav-item me-3"
+                role="button"
+                onClick={() => dispatch(logout())}
+              >
                 <button className="nav-link btn btn-link  px-2">Logout</button>
               </li>
             </>

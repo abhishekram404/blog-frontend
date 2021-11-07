@@ -4,6 +4,7 @@ const {
   NOT_AUTHENTICATED,
   LOADING_ON,
   LOADING_OFF,
+  LOGOUT,
 } = require("redux/constants");
 
 const commonReducer = (
@@ -35,6 +36,11 @@ const commonReducer = (
       };
 
     case NOT_AUTHENTICATED:
+      return {
+        ...state,
+        isUserLoggedIn: false,
+      };
+    case LOGOUT:
       return {
         ...state,
         isUserLoggedIn: false,

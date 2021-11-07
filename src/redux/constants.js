@@ -11,3 +11,4 @@ export const AUTHENTICATED = "AUTHENTICATED";
 export const NOT_AUTHENTICATED = "NOT_AUTHENTICATED";
 export const LOADING_ON = "LOADING_ON";
 export const LOADING_OFF = "LOADING_OFF";
+export const LOGOUT = "LOGOUT";
