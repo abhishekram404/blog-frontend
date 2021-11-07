@@ -1,30 +1,29 @@
-const alertReducer = (
-  state = { type: undefined, message: undefined },
-  action
-) => {
+import { CLEAR_ALERT, ERROR, INFO, SUCCESS } from "redux/constants";
+
+const alertReducer = (state = { type: null, message: null }, action) => {
   switch (action.type) {
-    case "ERROR":
+    case ERROR:
       return {
         ...state,
-        type: "ERROR",
+        type: ERROR,
         message: action.payload,
       };
-    case "ALERT":
+    case INFO:
       return {
         ...state,
-        type: "ALERT",
+        type: INFO,
         message: action.payload,
       };
-    case "SUCCESS":
+    case SUCCESS:
       return {
         ...state,
-        type: "SUCCESS",
+        type: SUCCESS,
         message: action.payload,
       };
-    case "CLEAR_ERROR":
+    case CLEAR_ALERT:
       return {
-        type: undefined,
-        message: undefined,
+        type: null,
+        message: null,
       };
     default:
       return state;

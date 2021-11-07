@@ -4,4 +4,5 @@ export const REGISTER_SUCCESSFUL = "REGISTER_SUCCESSFUL";
 export const REGISTER_FAILED = "REGISTER_FAILED";
 export const ERROR = "ERROR";
 export const SUCCESS = "SUCCESS";
-export const ALERT = "ALERT";
+export const INFO = "INFO";
+export const CLEAR_ALERT = "CLEAR_ALERT";
