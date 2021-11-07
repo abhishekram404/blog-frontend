@@ -1,11 +1,10 @@
 const User = require("../models/User");
 const registerValidator = require("../middlewares/registerValidator");
 const bcrypt = require("bcrypt");
-const { pascalCase } = require("change-case");
+
 module.exports.register = async (req, res) => {
   try {
     const { error, value } = await registerValidator(req.body);
-    console.log(error, value);
     if (error) {
       return res.status(400).json({
         success: false,
@@ -48,13 +47,13 @@ module.exports.register = async (req, res) => {
       maxAge: 1000 * 60 * 60 * 24 * 2,
       secure: false,
     });
-    return res.send({
+    return res.status(200).send({
       success: true,
       message: "Registration successful",
     });
   } catch (error) {
     console.log(error);
-    res.status(400).send({
+    res.status(500).send({
       success: false,
       message: error.message,
       details: error,

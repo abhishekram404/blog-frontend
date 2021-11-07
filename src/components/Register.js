@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "styles/register.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { ERROR, SUCCESS, ALERT } from "redux/constants";
 export default function Register() {
   const dispatch = useDispatch();
+  const [isSubmitting, setSubmitting] = useState(false);
   const { dark } = useSelector((state) => state.common);
   const initialValues = {
     name: "",
@@ -38,9 +39,10 @@ export default function Register() {
   });
 
   const handleSubmit = async (values) => {
-    console.log(values);
     try {
+      setSubmitting(true);
       const { data } = await axios.post("/user/register", values);
+      setSubmitting(false);
       switch (data.success) {
         case true:
           return dispatch({ type: SUCCESS, payload: data.message });
@@ -50,6 +52,7 @@ export default function Register() {
           return dispatch({ type: ERROR, payload: "Something went wrong!" });
       }
     } catch (error) {
+      setSubmitting(false);
       dispatch({ type: ERROR, payload: error.response.data.message });
     }
   };
@@ -67,7 +70,7 @@ export default function Register() {
           onSubmit={handleSubmit}
         >
           {(errors, touched) => (
-            <Form className="card p-4">
+            <Form className={clsx("card p-4", isSubmitting && "disabled")}>
               <h2 className="text-center">Register</h2>
               {/* <hr className="mt-1" /> */}
               <div className="mb-3">
@@ -143,7 +146,7 @@ export default function Register() {
                 </small>
               </div>
               <button type="submit" className="submit-btn btn btn-primary">
-                Register
+                {isSubmitting ? "Registering" : "Register"}
               </button>
             </Form>
           )}
