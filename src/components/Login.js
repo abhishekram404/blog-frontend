@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "styles/register.scss";
 import clsx from "clsx";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import axios from "axios";
+import { ERROR, SUCCESS } from "redux/constants";
 
 export default function Login() {
+  const [isSubmitting, setSubmitting] = useState(false);
+  const dispatch = useDispatch();
   const { dark } = useSelector((state) => state.common);
   const loginSchema = Yup.object({
     email: Yup.string().email("Invalid email").required("Required"),
@@ -13,8 +17,24 @@ export default function Login() {
   });
 
   const initialValues = { email: "", password: "" };
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    try {
+      setSubmitting(true);
+      const { data } = await axios.post("/user/login", values);
+      setSubmitting(false);
+
+      switch (data.success) {
+        case true:
+          return dispatch({ type: SUCCESS, payload: data.message });
+        case false:
+          return dispatch({ type: ERROR, payload: data.message });
+        default:
+          return dispatch({ type: ERROR, payload: "Something went wrong!" });
+      }
+    } catch (error) {
+      setSubmitting(false);
+      dispatch({ type: ERROR, payload: error.response.data.message });
+    }
   };
   return (
     <div
@@ -30,7 +50,7 @@ export default function Login() {
           onSubmit={handleSubmit}
         >
           {(errors, touched) => (
-            <Form className="card p-4">
+            <Form className={clsx("card p-4", isSubmitting && "disabled")}>
               <h2 className="text-center">Login</h2>
 
               <div className="mb-3">
@@ -63,7 +83,7 @@ export default function Login() {
               </div>
 
               <button type="submit" className="submit-btn btn btn-primary">
-                Login
+                {isSubmitting ? "Logging In" : "Login"}
               </button>
             </Form>
           )}

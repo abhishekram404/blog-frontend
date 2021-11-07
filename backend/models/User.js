@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 6,
       maxlength: 256,
+      select: false,
     },
     verified: {
       type: Boolean,

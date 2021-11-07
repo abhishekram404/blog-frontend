@@ -14,8 +14,8 @@ module.exports.register = async (req, res) => {
 
     let { name, email, username, password } = await value;
 
-    username = username.replace(/[^a-zA-Z _]/g, "");
-    username = username.toLowerCase();
+    // username = username.replace(/[^a-zA-Z _]/g, "");
+    // username = username.toLowerCase();
 
     const userAlreadyExist = await User.exists({ email });
     if (userAlreadyExist) {
@@ -23,6 +23,15 @@ module.exports.register = async (req, res) => {
         success: false,
         message:
           "Email is already registered. Please recheck email else login.",
+        details: null,
+      });
+    }
+
+    const usernameAlreadyExist = await User.exists({ username });
+    if (usernameAlreadyExist) {
+      return res.status(400).send({
+        success: false,
+        message: "Username is not available. Please choose another username.",
         details: null,
       });
     }
@@ -36,15 +45,15 @@ module.exports.register = async (req, res) => {
       password: hashedPassword,
     });
     const token = await newUser.generateToken();
-
+    console.log(token);
     res.cookie("jwt", token, {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 2,
+      maxAge: 900000000,
       secure: false,
     });
     res.cookie("isUserLoggedIn", true, {
       httpOnly: false,
-      maxAge: 1000 * 60 * 60 * 24 * 2,
+      maxAge: 900000000,
       secure: false,
     });
     return res.status(200).send({
@@ -54,6 +63,54 @@ module.exports.register = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).send({
+      success: false,
+      message: error.message,
+      details: error,
+    });
+  }
+};
+
+module.exports.login = async (req, res) => {
+  try {
+    const { email, password } = await req.body;
+
+    const foundUser = await User.findOne({ email: email.trim() }).select(
+      "+password"
+    );
+
+    if (!foundUser) {
+      return res.status(400).send({
+        success: false,
+        message:
+          "Email isn't registered. Please check your email or register first.",
+        details: null,
+      });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, foundUser.password);
+    if (!passwordMatch) {
+      return res.status(400).send({
+        success: false,
+        message: "Wrong password! Please double check your password.",
+        details: null,
+      });
+    }
+    const token = await foundUser.generateToken();
+    res.cookie("jwt", token, {
+      httpOnly: true,
+      maxAge: 900000000,
+      secure: false,
+    });
+    res.cookie("isUserLoggedIn", true, {
+      httpOnly: false,
+      maxAge: 900000000,
+      secure: false,
+    });
+    return res
+      .status(200)
+      .send({ success: true, message: "Login successful.", details: null });
+  } catch (error) {
+    return res.status(500).send({
       success: false,
       message: error.message,
       details: error,

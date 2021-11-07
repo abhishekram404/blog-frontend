@@ -25,17 +25,17 @@ function App() {
     switch (type) {
       case SUCCESS:
         alert.success(message, {
-          onClose: () => dispatch({ type: CLEAR_ALERT }),
+          onClose: alertOnClose,
         });
         break;
       case ERROR:
         alert.error(message, {
-          onClose: () => dispatch({ type: CLEAR_ALERT }),
+          onClose: alertOnClose,
         });
         break;
       case INFO:
         alert.info(message, {
-          onClose: () => dispatch({ type: CLEAR_ALERT }),
+          onClose: alertOnClose,
         });
         break;
       default:
