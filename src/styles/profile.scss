@@ -1,0 +1,49 @@
+@import "globals.scss";
+
+.profile {
+  .container {
+    // background-color: ;
+
+    .profile-section {
+      .avatar-section {
+        margin: 10px auto;
+        width: 250px;
+        height: 250px;
+        border: 1px solid $grey;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        img {
+          width: 60%;
+        }
+      }
+      .details-section {
+        font-family: "Lato";
+
+        .icon {
+          font-size: 1.1rem;
+        }
+
+        > h3 {
+          font-family: "Poppins";
+          margin-bottom: 5px;
+        }
+        > .username {
+          font-size: 1.1rem;
+          margin-bottom: 10px;
+        }
+        > .bio {
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+        }
+        > .connections {
+          margin-bottom: 10px;
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+.profile_light {
+  //   height: 100vh;
+}
