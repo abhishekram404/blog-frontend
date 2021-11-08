@@ -8,6 +8,19 @@ const userSchema = new mongoose.Schema(
       minlength: 3,
       maxlength: 100,
     },
+    bio: {
+      type: String,
+      required: false,
+      maxlength: 300,
+    },
+    address: {
+      type: String,
+      required: false,
+    },
+    dob: {
+      type: Date,
+      required: false,
+    },
     username: {
       type: String,
       required: true,
@@ -32,6 +45,18 @@ const userSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
+    followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
+    following: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     posts: [
       {
         type: mongoose.Schema.Types.ObjectId,
