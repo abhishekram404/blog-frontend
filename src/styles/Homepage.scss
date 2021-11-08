@@ -11,11 +11,36 @@
         .feed-item {
           border-radius: 10px;
           overflow: hidden;
+          .interaction-cont {
+            > div {
+              display: grid;
+              grid-template-rows: 1fr 1fr;
+              align-items: center;
+              justify-content: center;
+              text-align: center;
+              border-radius: 50%;
+              svg {
+                font-size: 1.4rem;
+              }
+              span {
+                font-size: 0.8rem;
+              }
+            }
+            > .col-1 {
+              width: unset;
+              transition: 0.3s;
+              cursor: pointer;
+            }
+            > .col-8 {
+              flex: 1;
+            }
+          }
           .thumbnail-cont {
             max-height: 300px;
             width: 100%;
             overflow: hidden;
           }
+
           .card-body {
             .post-title {
               font-family: "Poppins";
@@ -43,7 +68,6 @@
                   font-size: 0.9rem;
                   font-family: "Lato";
                   > .icon {
-                    color: $darkGrey;
                     font-size: 1.5rem;
                   }
                 }
@@ -75,10 +99,16 @@
         .feed-item {
           background-color: $darkGrey;
           color: $white;
-
-          .post-cont {
+          .interaction-cont {
             border-bottom: 1px solid $textGrey;
+            > .col-1 {
+              span,
+              svg {
+                color: $textHeading;
+              }
+            }
           }
+
           .card-body {
             border-bottom-color: $grey;
             .post-title {
@@ -117,8 +147,14 @@
           color: $darkGrey;
         }
         .feed-item {
-          .post-cont {
+          .interaction-cont {
             border-bottom: 1px solid $textHeading;
+            > .col-1 {
+              svg,
+              span {
+                color: $darkGrey;
+              }
+            }
           }
           .card-body {
             .post-title {

@@ -2,7 +2,14 @@ import React from "react";
 import HomeSidebar from "./HomeSidebar";
 import "styles/Homepage.scss";
 import featuredImage from "assets/featured.jpg";
-import { MdNotificationAdd } from "react-icons/md";
+import {
+  MdNotificationAdd,
+  MdOutlineBookmarkAdd,
+  MdOutlineBookmarkAdded,
+} from "react-icons/md";
+import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+import { BiComment, BiLike } from "react-icons/bi";
+import { IoIosShareAlt } from "react-icons/io";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -57,7 +64,24 @@ const FeedItem = () => {
           </p>
         </Link>
       </div>
-
+      <div className="card-body interaction-cont py-1 row align-items-center justify-content-center">
+        <div className="col-1">
+          <BiLike />
+          <span>2k</span>
+        </div>
+        <div className="col-1">
+          <BiComment />
+          <span>20k</span>
+        </div>
+        <div className="col-1 single-childed">
+          <IoIosShareAlt />
+          {/* <span>200</span> */}
+        </div>
+        <div className="col-8"></div>
+        <div className="col-1 single-childed">
+          <MdOutlineBookmarkAdd />
+        </div>
+      </div>
       <div className="card-body py-1">
         <div className="row  align-items-center g-3">
           <div className="col-2 col-sm-1 p-1 profile-pic-cont ">
