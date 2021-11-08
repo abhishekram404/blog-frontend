@@ -20,7 +20,7 @@ export default function Navbar() {
         <Link to="/" className="navbar-brand">
           Blog
         </Link>
-        <ul className="navbar-nav flex-row">
+        <ul className="navbar-nav flex-row align-items-center">
           {isUserLoggedIn ? (
             <>
               <li className="nav-item me-3">
@@ -29,6 +29,15 @@ export default function Navbar() {
                   className="cta nav-link btn btn-primary px-2"
                 >
                   Create post
+                </Link>
+              </li>
+              <li className="nav-item me-3">
+                <Link to="/profile" className="nav-link p-2 profile-link">
+                  <img
+                    src="https://avatars.dicebear.com/api/male/john.svg?mood[]=happy"
+                    alt=""
+                  />
+                  <span>Abhishek Ram</span>
                 </Link>
               </li>
               <li

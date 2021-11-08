@@ -9,11 +9,30 @@
       font-size: 1.8rem;
     }
     .navbar-nav {
-      a {
-        text-decoration: none;
-      }
-      .cta {
-        color: $white;
+      .nav-item {
+        font-family: "Poppins";
+        a {
+          text-decoration: none;
+        }
+
+        .profile-link {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          &:hover {
+            background: rgba($color: $textGrey, $alpha: 0.5);
+          }
+          img {
+            width: 25px;
+          }
+          span {
+            margin-left: 10px;
+            font-family: "Poppins";
+          }
+        }
+        .cta {
+          color: $white;
+        }
       }
       .dark-mode-switch {
         padding: 5px;

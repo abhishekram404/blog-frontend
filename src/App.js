@@ -22,6 +22,7 @@ import {
   NOT_AUTHENTICATED,
 } from "redux/constants";
 import Cookies from "js-cookie";
+import Profile from "components/Profile";
 function App() {
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -80,6 +81,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
           <ProtectedRoute path="/create-post" component={CreatePost} />
+          <ProtectedRoute path="/profile" component={Profile} />
         </Switch>
       </div>
     </Router>
