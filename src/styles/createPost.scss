@@ -1,9 +1,20 @@
 @import "globals.scss";
 .create_post {
   .container {
-    > h2 {
+    > .row {
       margin-bottom: 20px;
+
+      > div {
+        h2 {
+        }
+      }
+      > .preview-btn {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+      }
     }
+
     form {
       border-radius: 10px;
       input,
@@ -72,8 +83,12 @@
 
 .create_post_dark {
   .container {
-    > h2 {
-      color: $textHeading;
+    > .row {
+      .col-10 {
+        h2 {
+          color: $textHeading;
+        }
+      }
     }
     form {
       border: 1px solid $grey;

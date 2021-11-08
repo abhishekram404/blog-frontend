@@ -26,8 +26,7 @@
           object-fit: cover;
         }
       }
-
-      p {
+      .post-body {
         line-height: 30px;
         font-weight: 400;
         font-size: 1.1rem;
@@ -114,7 +113,7 @@
           color: $textHeading;
         }
       }
-      p {
+      .post-body {
         color: $textHeading;
       }
     }
@@ -166,7 +165,7 @@
           }
         }
       }
-      p {
+      .post-body {
         color: #2e2e2e;
       }
     }
