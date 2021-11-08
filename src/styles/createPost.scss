@@ -166,3 +166,20 @@
     }
   }
 }
+
+@media screen and (max-width: 512px) {
+  .create_post {
+    .container {
+      form {
+        > .mb-3 {
+          .post-title {
+            font-size: 1.6rem;
+            &::placeholder {
+              font-size: 1.6rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

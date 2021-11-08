@@ -172,3 +172,44 @@
     }
   }
 }
+
+@media screen and (max-width: 512px) {
+  .post {
+    .container {
+      article {
+        .info-row {
+          font-weight: 400;
+          font-size: 0.8rem;
+        }
+        .title-bar {
+          .title-row {
+            .post-title {
+              font-size: 1.7rem;
+            }
+          }
+        }
+      }
+      .comments-section {
+        .comment {
+          grid-template-columns: minmax(30px, 60px) minmax(200px, 500px);
+          .avatar {
+            img {
+              width: 60%;
+            }
+          }
+          .comment-details {
+            .comment-user {
+              font-size: 1rem;
+            }
+            .comment-text {
+              font-size: 0.95rem;
+            }
+            .comment-time {
+              font-size: 0.9rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -37,7 +37,8 @@ function App() {
   useEffect(() => {
     if (!authenticated) {
       return dispatch({
-        type: NOT_AUTHENTICATED,
+        // type: NOT_AUTHENTICATED,
+        type: AUTHENTICATED,
       });
     } else {
       return dispatch({
