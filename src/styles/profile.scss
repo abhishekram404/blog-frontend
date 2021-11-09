@@ -2,13 +2,13 @@
 
 .profile {
   .container {
-    // background-color: ;
-
     .profile-section {
       .avatar-section {
         margin: 10px auto;
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
+        max-width: 250px;
+        max-height: 250px;
         border: 1px solid $grey;
         border-radius: 50%;
         display: grid;
@@ -22,28 +22,78 @@
 
         .icon {
           font-size: 1.1rem;
+          margin-right: 10px;
         }
 
+        > * {
+          margin-bottom: 10px;
+          font-family: "Lato";
+          display: flex;
+          align-items: center;
+        }
         > h3 {
           font-family: "Poppins";
           margin-bottom: 5px;
         }
         > .username {
           font-size: 1.1rem;
-          margin-bottom: 10px;
         }
         > .bio {
           font-size: 1.2rem;
-          margin-bottom: 10px;
         }
         > .connections {
-          margin-bottom: 10px;
           font-size: 0.9rem;
+        }
+        > .address {
+        }
+        .edit-profile-btn {
+          margin-top: 10px;
+          font-family: "Lato";
         }
       }
     }
   }
 }
 .profile_light {
-  //   height: 100vh;
+  .container {
+    .profile-section {
+      .details-section {
+        .icon {
+        }
+        > .edit-profile-btn {
+          // background-color: $textGrey;
+          border: 1px solid $textGrey;
+        }
+      }
+    }
+  }
+}
+
+.profile_dark {
+  .container {
+    .profile-section {
+      .details-section {
+        .icon {
+          color: $white;
+        }
+        h3 {
+          color: $white;
+        }
+        > .username {
+          color: $textGrey;
+        }
+        > .bio,
+        > .address,
+        > .connections,
+        > .joined {
+          color: $textHeading;
+        }
+        > .edit-profile-btn {
+          background-color: $grey;
+          border: 0;
+          color: $white;
+        }
+      }
+    }
+  }
 }
