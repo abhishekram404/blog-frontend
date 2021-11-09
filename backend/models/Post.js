@@ -21,6 +21,11 @@ const postSchema = new mongoose.Schema(
       required: true,
     },
     author: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    published: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
     likes: [
       {
         type: mongoose.Schema.Types.ObjectId,
@@ -33,7 +38,12 @@ const postSchema = new mongoose.Schema(
         ref: "Comment",
       },
     ],
+    noOfBookmarks: {
+      type: Number,
+      default: 0,
+    },
   },
+
   {
     timestamps: true,
   }
