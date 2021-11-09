@@ -1,15 +1,16 @@
+import React, { useState, useCallback, Suspense } from "react";
 import clsx from "clsx";
-import React, { useState, useCallback } from "react";
 import "styles/createPost.scss";
-import CKEditor from "react-ckeditor-component";
 import { WithContext as ReactTags } from "react-tag-input";
 import { pascalCase } from "change-case";
 import { useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
 import _ from "lodash";
 import { AiOutlineEye } from "react-icons/ai";
-import Post from "./Post";
 import { IoCreateOutline } from "react-icons/io5";
+import Loading from "./Loading";
+const CKEditor = React.lazy(() => import("react-ckeditor-component"));
+const Post = React.lazy(() => import("./Post"));
 export default function CreatePost() {
   const { dark } = useSelector((state) => state.common);
   const [tags, setTags] = useState([]);
@@ -96,12 +97,14 @@ export default function CreatePost() {
           </div>
         </div>
         {previewMode ? (
-          <Post
-            title={formData.title}
-            category={formData.category}
-            body={formData.content}
-            preview={true}
-          />
+          <Suspense fallback={<Loading />}>
+            <Post
+              title={formData.title}
+              category={formData.category}
+              body={formData.content}
+              preview={true}
+            />
+          </Suspense>
         ) : (
           <Formik initialValues={formData} onSubmit={handleSubmit}>
             {(props) => (
@@ -178,18 +181,19 @@ export default function CreatePost() {
                     Body
                   </label>
 
-                  <CKEditor
-                    content={formData.content}
-                    activeClass="editor"
-                    events={{
-                      change: (e) => debounce(e.editor.getData()),
-                    }}
-                    config={{
-                      removeButtons:
-                        "Cut,Copy,Paste,Anchor,Scayt,PasteText,PasteFromWord,About",
-                    }}
-                  />
-
+                  <Suspense fallback={<Loading />}>
+                    <CKEditor
+                      content={formData.content}
+                      activeClass="editor"
+                      events={{
+                        change: (e) => debounce(e.editor.getData()),
+                      }}
+                      config={{
+                        removeButtons:
+                          "Cut,Copy,Paste,Anchor,Scayt,PasteText,PasteFromWord,About",
+                      }}
+                    />
+                  </Suspense>
                 </div>
                 <div className="d-flex justify-content-end">
                   <button className="btn btn-secondary shadow-none me-3">

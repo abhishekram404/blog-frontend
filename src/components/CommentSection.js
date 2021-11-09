@@ -1,4 +1,6 @@
-import React from "react";
+import React, { Suspense } from "react";
+import Loading from "./Loading";
+const Comment = React.lazy(() => import("./Comment"));
 
 export default function CommentSection() {
   return (
@@ -19,35 +21,14 @@ export default function CommentSection() {
       </form>
       <br />
       <br />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
+      <Suspense fallback={<Loading />}>
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+        <Comment />
+      </Suspense>
     </div>
   );
 }
-
-const Comment = () => {
-  return (
-    <div className="comment">
-      <div className="avatar">
-        <img
-          src="https://avatars.dicebear.com/api/male/john.svg?mood[]=happy"
-          alt=""
-        />
-      </div>
-      <div className="comment-details">
-        <h6 className="comment-user">Abhishek Ram</h6>
-        <p className="comment-text mb-1">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit delectus
-          rem doloremque. Autem corrupti molestiae velit ullam consequatur qui
-          amet laboriosam ducimus quis neque necessitatibus asperiores, magni
-          itaque saepe blanditiis.
-        </p>
-        <small className="comment-time">2 min ago</small>
-      </div>
-    </div>
-  );
-};

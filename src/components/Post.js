@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import React from "react";
+import React, { Suspense } from "react";
+import Loading from "./Loading";
 import "styles/post.scss";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import {
@@ -9,9 +10,10 @@ import {
   MdOutlineShare,
 } from "react-icons/md";
 import featuredImage from "assets/featured.jpg";
-import CommentSection from "./CommentSection";
+// import CommentSection from "./CommentSection";
 import { useSelector } from "react-redux";
 import parser from "html-react-parser";
+const CommentSection = React.lazy(() => import("./CommentSection"));
 export default function Post({ title, body, category, preview = false }) {
   const { dark } = useSelector((state) => state.common);
   return (
@@ -228,7 +230,9 @@ export default function Post({ title, body, category, preview = false }) {
         {preview ? null : (
           <>
             <br />
-            <CommentSection />
+            <Suspense fallback={<Loading />}>
+              <CommentSection />
+            </Suspense>
           </>
         )}
       </div>

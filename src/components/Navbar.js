@@ -6,6 +6,8 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, toggle_dark_mode } from "redux/actions/commonActions";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 export default function Navbar() {
   const dispatch = useDispatch();
   const { dark, isUserLoggedIn } = useSelector((state) => state.common);

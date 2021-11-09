@@ -1,16 +1,16 @@
-import { useState } from "react";
+import React, { Suspense, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from "./components/Navbar";
-import Post from "components/Post";
+// import Post from "components/Post";
 import ProtectedRoute from "components/ProtectedRoute";
 import clsx from "clsx";
 import "styles/app.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import CreatePost from "components/CreatePost";
-import Homepage from "components/Homepage";
-import Register from "components/Register";
-import Login from "components/Login";
+// import CreatePost from "components/CreatePost";
+// import Homepage from "components/Homepage";
+// import Register from "components/Register";
+// import Login from "components/Login";
 import { useEffect } from "react";
 import { useAlert } from "react-alert";
 import {
@@ -22,7 +22,14 @@ import {
   NOT_AUTHENTICATED,
 } from "redux/constants";
 import Cookies from "js-cookie";
-import Profile from "components/Profile";
+import Loading from "components/Loading";
+// import Profile from "components/Profile";
+const Homepage = React.lazy(() => import("components/Homepage"));
+const Post = React.lazy(() => import("components/Post"));
+const Register = React.lazy(() => import("components/Register"));
+const Login = React.lazy(() => import("components/Login"));
+const CreatePost = React.lazy(() => import("components/CreatePost"));
+const Profile = React.lazy(() => import("components/Profile"));
 function App() {
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -38,8 +45,7 @@ function App() {
   useEffect(() => {
     if (!authenticated) {
       return dispatch({
-        // type: NOT_AUTHENTICATED,
-        type: AUTHENTICATED,
+        type: NOT_AUTHENTICATED,
       });
     } else {
       return dispatch({
@@ -76,12 +82,14 @@ function App() {
         <Navbar />
 
         <Switch>
-          <Route path="/" exact component={Homepage} />
-          <Route path="/post" component={Post} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={Login} />
-          <ProtectedRoute path="/create-post" component={CreatePost} />
-          <ProtectedRoute path="/profile" component={Profile} />
+          <Suspense fallback={<Loading />}>
+            <Route path="/" exact component={Homepage} />
+            <Route path="/post" component={Post} />
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={Login} />
+            <ProtectedRoute path="/create-post" component={CreatePost} />
+            <ProtectedRoute path="/profile" component={Profile} />
+          </Suspense>
         </Switch>
       </div>
     </Router>
