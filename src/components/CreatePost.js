@@ -73,7 +73,7 @@ export default function CreatePost() {
       )}
     >
       <div className="container">
-        <div className="row mb-2">
+        <div className="row mb-2 align-items-center">
           <div className="col-8 col-sm-9">
             <h2>{previewMode ? "Preview mode" : "Create a post"}</h2>
           </div>
@@ -189,6 +189,7 @@ export default function CreatePost() {
                         "Cut,Copy,Paste,Anchor,Scayt,PasteText,PasteFromWord,About",
                     }}
                   />
+
                 </div>
                 <div className="d-flex justify-content-end">
                   <button className="btn btn-secondary shadow-none me-3">

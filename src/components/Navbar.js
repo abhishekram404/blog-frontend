@@ -19,6 +19,9 @@ export default function Navbar() {
   };
 
   useEffect(() => {
+    if (window.innerWidth > 576) {
+      setNavExpanded(true);
+    }
     window.addEventListener("resize", resize);
 
     return () => {
