@@ -5,7 +5,7 @@ import { WithContext as ReactTags } from "react-tag-input";
 import { pascalCase } from "change-case";
 import { useSelector } from "react-redux";
 import { Formik, Form, Field } from "formik";
-import _ from "lodash";
+import { debounce as db } from "lodash";
 import { AiOutlineEye } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
 import Loading from "./Loading";
@@ -42,7 +42,7 @@ export default function CreatePost() {
   };
 
   const debounce = useCallback(
-    _.debounce((value) => {
+    db((value) => {
       setFormData(Object.assign(formData, { content: value }));
     }, 300),
     []

@@ -4,6 +4,9 @@ const app = express();
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
 const bodyParser = require("body-parser");
+const dotenv = require("dotenv");
+
+dotenv.config();
 app.use(
   cors({
     origin: "http://localhost:3000",
@@ -15,6 +18,15 @@ app.use(
     extended: true,
   })
 );
+
+app.use(express.static("../build/"));
+
+if (process.env.NODE_ENV === "production") {
+  app.get("*", (req, res) => {
+    res.sendFile("index.html");
+  });
+  return;
+}
 
 app.use(bodyParser.urlencoded({ extended: true }));
 

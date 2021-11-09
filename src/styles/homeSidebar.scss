@@ -1,0 +1,30 @@
+@import "globals.scss";
+
+.home-sidebar {
+  .side-nav {
+    list-style-type: none;
+    .side-nav-item {
+      margin-bottom: 10px;
+      .profile-link {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        // &:hover {
+        //   background: rgba($color: $textGrey, $alpha: 0.5);
+        // }
+        img {
+          width: 25px;
+        }
+        span {
+          margin-left: 10px;
+          font-family: "Poppins";
+        }
+      }
+      &:not(:first-child) {
+        display: grid;
+        grid-template-columns: 25px 1fr;
+        column-gap: 12px;
+      }
+    }
+  }
+}

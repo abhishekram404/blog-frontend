@@ -52,6 +52,13 @@
         }
       }
     }
+    .profile-feed-section {
+      border: 1px solid rgba($color: $textGrey, $alpha: 0.5);
+      > h4 {
+        font-family: "Poppins";
+        margin-bottom: 20px;
+      }
+    }
   }
 }
 .profile_light {
@@ -64,6 +71,12 @@
           // background-color: $textGrey;
           border: 1px solid $textGrey;
         }
+      }
+    }
+    .profile-feed-section {
+      border-color: rgba($color: $textGrey, $alpha: 0.5);
+      > h4 {
+        color: $darkGrey;
       }
     }
   }
@@ -93,6 +106,12 @@
           border: 0;
           color: $white;
         }
+      }
+    }
+    .profile-feed-section {
+      border-color: rgba($color: $textGrey, $alpha: 0.2);
+      > h4 {
+        color: $textHeading;
       }
     }
   }

@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useSelector } from "react-redux";
 import Loading from "./Loading";
 const FeedItem = React.lazy(() => import("./FeedItem"));
+const HomeSidebar = React.lazy(() => import("./HomeSidebar"));
 export default function Homepage() {
   const { dark } = useSelector((state) => state.common);
   return (
@@ -28,9 +29,13 @@ export default function Homepage() {
           </div>
 
           {/* Sidebar is commented for now */}
-          {/* <div className="col-3  card p-3 d-none d-md-block">
-            <HomeSidebar />
-          </div> */}
+          <div className="col-3  border p-3 d-none d-md-block">
+            Quick links
+            <hr className="mt-2 mb-3" />
+            <Suspense fallback={<Loading />}>
+              <HomeSidebar />
+            </Suspense>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,61 @@
+@import "globals.scss";
+.edit-profile {
+  .container {
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      > h2 {
+        font-family: "Montserrat";
+        text-align: center;
+      }
+      .mb-3 {
+        label,
+        input {
+          font-family: "Poppins";
+        }
+      }
+    }
+  }
+}
+
+.edit-profile-dark {
+  .container {
+    form {
+      > h2 {
+        color: $textHeading;
+      }
+      background-color: $darkGrey;
+      .mb-3 {
+        label,
+        input {
+          color: $textGrey;
+        }
+        input {
+          background-color: $grey;
+          border-color: $black;
+        }
+      }
+      .cancel-btn {
+        background-color: $grey;
+        color: $textHeading;
+      }
+    }
+  }
+}
+
+.edit-profile-light {
+  .container {
+    form {
+      h2 {
+        color: $darkGrey;
+      }
+
+      .mb-3 {
+        label,
+        input {
+          color: $grey;
+        }
+      }
+    }
+  }
+}

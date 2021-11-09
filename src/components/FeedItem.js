@@ -9,9 +9,18 @@ import {
 import { BiComment, BiLike } from "react-icons/bi";
 import { IoIosShareAlt } from "react-icons/io";
 import featuredImage from "assets/featured.jpg";
+import "styles/feedItem.scss";
+import { useSelector } from "react-redux";
+import clsx from "clsx";
 const FeedItem = () => {
+  const { dark } = useSelector((state) => state.common);
   return (
-    <div className="border-1  card feed-item mb-4">
+    <div
+      className={clsx(
+        "border-1  card feed-item mb-4",
+        dark ? "feed-item-dark" : "feed-item-light"
+      )}
+    >
       <div className="thumbnail-cont">
         <img
           src={featuredImage}

@@ -8,82 +8,6 @@
           font-family: "Poppins";
           margin-bottom: 20px;
         }
-        .feed-item {
-          border-radius: 10px;
-          overflow: hidden;
-          .interaction-cont {
-            > div {
-              display: grid;
-              grid-template-rows: 1fr 1fr;
-              align-items: center;
-              justify-content: center;
-              text-align: center;
-              border-radius: 50%;
-              svg {
-                font-size: 1.4rem;
-              }
-              span {
-                font-size: 0.8rem;
-              }
-            }
-            > .col-1 {
-              width: unset;
-              transition: 0.3s;
-              cursor: pointer;
-            }
-            > .col-8 {
-              flex: 1;
-            }
-          }
-          .thumbnail-cont {
-            max-height: 300px;
-            width: 100%;
-            overflow: hidden;
-          }
-
-          .card-body {
-            .post-title {
-              font-family: "Poppins";
-            }
-            .post-body {
-              font-family: "Lato";
-            }
-            > .row {
-              justify-content: flex-start;
-              > div {
-                .profile-pic {
-                  width: 100%;
-                  height: 100%;
-                }
-                .author-name {
-                  font-family: "Lato";
-                }
-                .author-username {
-                  color: $grey;
-                  font-family: "Poppins";
-                  font-size: 0.8rem;
-                }
-                .follow-btn {
-                  text-decoration: none;
-                  font-size: 0.9rem;
-                  font-family: "Lato";
-                  > .icon {
-                    font-size: 1.5rem;
-                  }
-                }
-              }
-              > .profile-pic-cont {
-                height: 50px;
-                width: 50px;
-                border-radius: 50%;
-                overflow: hidden;
-                display: grid;
-                place-items: center;
-                padding: 5px;
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -96,44 +20,6 @@
         > h2 {
           color: $textHeading;
         }
-        .feed-item {
-          background-color: $darkGrey;
-          color: $white;
-          .interaction-cont {
-            border-bottom: 1px solid $textGrey;
-            > .col-1 {
-              span,
-              svg {
-                color: $textHeading;
-              }
-            }
-          }
-
-          .card-body {
-            border-bottom-color: $grey;
-            .post-title {
-              color: $textHeading;
-            }
-            .post-body {
-              color: $textGrey;
-            }
-            > .row {
-              > div {
-                .author-name {
-                  color: $textHeading;
-                }
-                .author-username {
-                  color: $textGrey;
-                }
-                .follow-btn {
-                  > .icon {
-                    color: $textHeading;
-                  }
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -145,40 +31,6 @@
       > .feed {
         > h2 {
           color: $darkGrey;
-        }
-        .feed-item {
-          .interaction-cont {
-            border-bottom: 1px solid $textHeading;
-            > .col-1 {
-              svg,
-              span {
-                color: $darkGrey;
-              }
-            }
-          }
-          .card-body {
-            .post-title {
-              color: $darkGrey;
-            }
-            .post-body {
-              color: $grey;
-            }
-            > .row {
-              > div {
-                .author-name {
-                  color: $darkGrey;
-                }
-                .author-username {
-                  color: $grey;
-                }
-                .follow-btn {
-                  > .icon {
-                    color: $darkGrey;
-                  }
-                }
-              }
-            }
-          }
         }
       }
     }
