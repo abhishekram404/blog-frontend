@@ -83,13 +83,16 @@
 
 .create_post_dark {
   .container {
-    > .row {
-      .col-10 {
-        h2 {
-          color: $textHeading;
-        }
+    > .row > div {
+      h2 {
+        color: $textHeading;
+      }
+      button {
+        background-color: $grey;
+        color: $textHeading;
       }
     }
+
     form {
       border: 1px solid $grey;
       background-color: $darkGrey;
@@ -145,9 +148,18 @@
     }
   }
 }
-
 .create_post_light {
   .container {
+    > .row > div {
+      h2 {
+        color: $darkGrey;
+      }
+      button {
+        background-color: $textHeading;
+        color: $darkGrey;
+        border: 1px solid $textGrey;
+      }
+    }
     form {
       background-color: white;
       border: 1px solid rgba($color: $textGrey, $alpha: 0.4);

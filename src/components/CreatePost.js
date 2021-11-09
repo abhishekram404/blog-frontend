@@ -9,6 +9,7 @@ import { Formik, Form, Field } from "formik";
 import _ from "lodash";
 import { AiOutlineEye } from "react-icons/ai";
 import Post from "./Post";
+import { IoCreateOutline } from "react-icons/io5";
 export default function CreatePost() {
   const { dark } = useSelector((state) => state.common);
   const [tags, setTags] = useState([]);
@@ -74,14 +75,23 @@ export default function CreatePost() {
       <div className="container">
         <div className="row mb-2">
           <div className="col-8 col-sm-9">
-            <h2>Create a post</h2>
+            <h2>{previewMode ? "Preview mode" : "Create a post"}</h2>
           </div>
-          <div className="col-4 col-sm-3 preview-btn">
+          <div className="col-4 col-sm-3 preview-btn ">
             <button
-              className="btn btn-light ms-auto"
+              className="btn btn-sm  ms-auto shadow-none"
               onClick={() => setPreviewMode(!previewMode)}
             >
-              Preview <AiOutlineEye />
+              {previewMode ? (
+                <>
+                  Edit <IoCreateOutline />
+                </>
+              ) : (
+                <>
+                  {" "}
+                  Preview <AiOutlineEye />
+                </>
+              )}
             </button>
           </div>
         </div>
