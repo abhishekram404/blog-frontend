@@ -91,13 +91,13 @@ const FeedItem = () => {
               className="profile-pic"
             />
           </div>
-          <div className="col-7 col-sm-8 px-1 px-sm-3 px-md-3 d-flex flex-column">
+          <div className="col-7 col-sm-7 px-1 px-sm-3 px-md-3 d-flex flex-column">
             <span className="author-name">Abhishek Ram</span>
             <small className="author-username">
               <Link to="/user/abhishek">@abhishek</Link>
             </small>
           </div>
-          <div className="col-3 col-sm-3">
+          <div className="col col-sm-3 ms-auto px-0">
             <button className="btn shadow-none  follow-btn float-end">
               <MdNotificationAdd className="icon " />
             </button>
