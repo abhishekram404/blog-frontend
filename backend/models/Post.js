@@ -38,10 +38,12 @@ const postSchema = new mongoose.Schema(
         ref: "Comment",
       },
     ],
-    noOfBookmarks: {
-      type: Number,
-      default: 0,
-    },
+    bookmarkedBy: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
 
   {

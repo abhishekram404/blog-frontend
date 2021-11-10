@@ -29,7 +29,7 @@ export default function Homepage() {
           </div>
 
           {/* Sidebar is commented for now */}
-          <div className="col-3 sidebar-section p-3 d-none d-md-block">
+          <div className="col-md-3 sidebar-section p-3 d-none d-md-block">
             Quick links
             <hr className="mt-2 mb-3" />
             <Suspense fallback={<Loading />}>

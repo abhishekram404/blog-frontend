@@ -12,7 +12,7 @@ import featuredImage from "assets/featured.jpg";
 import "styles/feedItem.scss";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
-const FeedItem = () => {
+const FeedItem = ({ selfMode }) => {
   const { dark } = useSelector((state) => state.common);
   return (
     <div
@@ -49,7 +49,6 @@ const FeedItem = () => {
         </div>
         <div className="col-1 single-childed">
           <IoIosShareAlt />
-          {/* <span>200</span> */}
         </div>
         <div className="col-8"></div>
         <div className="col-1 single-childed">
@@ -57,25 +56,36 @@ const FeedItem = () => {
         </div>
       </div>
       <div className="card-body py-1">
-        <div className="row  align-items-center g-3">
-          <div className="col-2 col-sm-1 p-1 profile-pic-cont ">
-            <img
-              src="https://avatars.dicebear.com/api/male/john.svg?mood[]=happy"
-              alt="Profile"
-              className="profile-pic"
-            />
-          </div>
-          <div className="col-7 col-sm-7 px-1 px-sm-3 px-md-3 d-flex flex-column">
-            <span className="author-name">Abhishek Ram</span>
-            <small className="author-username">
-              <Link to="/user/abhishek">@abhishek</Link>
-            </small>
-          </div>
-          <div className="col col-sm-3 ms-auto px-0">
-            <button className="btn shadow-none  follow-btn float-end">
-              <MdNotificationAdd className="icon " />
-            </button>
-          </div>
+        <div className="row  align-items-center g-2 py-2">
+          {selfMode ? (
+            <>
+              <button className="col edit-btn btn  me-1 ">Edit</button>
+              <button className="col delete-btn btn btn-danger ms-1">
+                Delete
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="col-2 col-sm-1 p-1 profile-pic-cont ">
+                <img
+                  src="https://avatars.dicebear.com/api/male/john.svg?mood[]=happy"
+                  alt="Profile"
+                  className="profile-pic"
+                />
+              </div>
+              <div className="col-7 col-sm-7 px-1 px-sm-3 px-md-3 d-flex flex-column">
+                <span className="author-name">Abhishek Ram</span>
+                <small className="author-username">
+                  <Link to="/user/abhishek">@abhishek</Link>
+                </small>
+              </div>
+              <div className="col col-sm-3 ms-auto px-0">
+                <button className="btn shadow-none  follow-btn float-end">
+                  <MdNotificationAdd className="icon " />
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>

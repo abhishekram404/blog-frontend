@@ -1,0 +1,27 @@
+@import "globals.scss";
+.posts {
+  > h3 {
+    font-family: "Poppins";
+    margin-bottom: 15px;
+  }
+  .posts-list {
+    border-radius: 15px;
+  }
+}
+
+.posts-dark {
+  > h3 {
+    color: $textHeading;
+  }
+  .posts-list {
+    border: 1px solid rgba($color: $textGrey, $alpha: 0.2);
+  }
+}
+
+.posts-light {
+  > h3 {
+  }
+  .posts-list {
+    border: 1px solid rgba($color: $textGrey, $alpha: 0.5);
+  }
+}

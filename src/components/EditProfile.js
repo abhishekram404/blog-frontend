@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "styles/editProfile.scss";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 export default function EditProfile() {
   const { dark } = useSelector((state) => state.common);
 
@@ -105,7 +106,9 @@ export default function EditProfile() {
                 </small>
               </div>
               <div className="">
-                <button className="btn me-2 cancel-btn">Cancel</button>
+                <Link className="btn me-2 cancel-btn" to="/profile">
+                  Cancel
+                </Link>
                 <button type="submit" className="btn btn-primary submit-btn">
                   Update
                 </button>

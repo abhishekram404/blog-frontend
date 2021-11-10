@@ -1,16 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "styles/homeSidebar.scss";
-import { Link } from "react-router-dom";
-import { FcBookmark, FcDocument, FcFile } from "react-icons/fc";
+import { Link, useLocation } from "react-router-dom";
 import { IoNewspaperOutline, IoSettingsOutline } from "react-icons/io5";
-import { RiDraftLine } from "react-icons/ri";
 import { HiOutlineDocument } from "react-icons/hi";
 import { MdOutlineBookmarkBorder } from "react-icons/md";
 import { BsPeople, BsPersonCheck } from "react-icons/bs";
 import clsx from "clsx";
 import { useSelector } from "react-redux";
+import { AiOutlineHome } from "react-icons/ai";
 export default function HomeSidebar() {
+  const location = useLocation();
   const { dark } = useSelector((state) => state.common);
+
+  const [active, setActive] = useState("");
+
+  const p =
+    location.pathname.split("/")[location.pathname.split("/").length - 1];
+
+  useEffect(() => {
+    switch (p) {
+      case "":
+        setActive("home");
+        break;
+      case "profile":
+        setActive("profile");
+        break;
+      case "posts":
+        setActive("posts");
+        break;
+      case "saved":
+        setActive("saved");
+        break;
+      case "followers":
+        setActive("followers");
+        break;
+      case "following":
+        setActive("following");
+        break;
+      case "drafts":
+        setActive("drafts");
+        break;
+      case "settings":
+        setActive("settings");
+        break;
+
+      default:
+        break;
+    }
+  });
+
   return (
     <div
       className={clsx(
@@ -19,7 +57,7 @@ export default function HomeSidebar() {
       )}
     >
       <ul className="side-nav ps-2">
-        <li className="side-nav-item">
+        <li className={clsx("side-nav-item", active === "profile" && "active")}>
           <Link to="/profile" className="nav-link p-0 profile-link">
             <img
               src="https://avatars.dicebear.com/api/male/john.svg?mood[]=happy"
@@ -28,44 +66,70 @@ export default function HomeSidebar() {
             <span>Abhishek Ram</span>
           </Link>
         </li>
-        <li className="side-nav-item">
-          <span>
-            <IoNewspaperOutline />{" "}
-          </span>
-          Posts
+        <li className={clsx("side-nav-item", active === "" && "active")}>
+          <Link to="/">
+            <span>
+              <AiOutlineHome />{" "}
+            </span>
+            Home
+          </Link>
         </li>
-        <li className="side-nav-item">
-          <span>
-            {" "}
-            <HiOutlineDocument />
-          </span>
-          Drafts
+        <li className={clsx("side-nav-item", active === "posts" && "active")}>
+          <Link to="/profile/posts">
+            <span>
+              <IoNewspaperOutline />{" "}
+            </span>
+            Posts
+          </Link>
         </li>
-        <li className="side-nav-item">
-          <span>
-            <MdOutlineBookmarkBorder />
-          </span>
-          Saved
+        <li className={clsx("side-nav-item", active === "drafts" && "active")}>
+          <Link to="/profile/drafts">
+            <span>
+              {" "}
+              <HiOutlineDocument />
+            </span>
+            Drafts
+          </Link>
         </li>
-        <li className="side-nav-item">
-          <span>
-            <BsPeople />
-          </span>
-          Followers
+        <li className={clsx("side-nav-item", active === "saved" && "active")}>
+          <Link to="/profile/saved">
+            <span>
+              <MdOutlineBookmarkBorder />
+            </span>
+            Saved
+          </Link>
         </li>
-        <li className="side-nav-item">
-          <span>
-            <BsPersonCheck />
-          </span>
-          Following
+        <li
+          className={clsx("side-nav-item", active === "followers" && "active")}
+        >
+          <Link to="/profile/followers">
+            <span>
+              <BsPeople />
+            </span>
+            Followers
+          </Link>
+        </li>
+        <li
+          className={clsx("side-nav-item", active === "following" && "active")}
+        >
+          <Link to="/profile/following">
+            <span>
+              <BsPersonCheck />
+            </span>
+            Following
+          </Link>
         </li>
         <hr />
 
-        <li className="side-nav-item">
-          <span>
-            <IoSettingsOutline />
-          </span>
-          Settings
+        <li
+          className={clsx("side-nav-item", active === "settings" && "active")}
+        >
+          <Link to="/profile/settings">
+            <span>
+              <IoSettingsOutline />
+            </span>
+            Settings
+          </Link>
         </li>
       </ul>
     </div>

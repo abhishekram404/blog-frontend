@@ -2,80 +2,103 @@
 
 .profile {
   .container {
-    .profile-section {
-      .avatar-section {
-        margin: 10px auto;
-        width: 200px;
-        height: 200px;
-        max-width: 250px;
-        max-height: 250px;
-        border: 1px solid $grey;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        img {
-          width: 60%;
+    > .row {
+      .main-section {
+        .profile-section {
+          border-radius: 15px;
+          margin-bottom: 30px;
+          .avatar-section {
+            margin: 10px auto;
+            width: 200px;
+            height: 200px;
+            max-width: 250px;
+            max-height: 250px;
+            border: 1px solid $grey;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            img {
+              width: 60%;
+            }
+          }
+          .details-section {
+            font-family: "Lato";
+
+            .icon {
+              font-size: 1.1rem;
+              margin-right: 10px;
+            }
+
+            > * {
+              margin-bottom: 10px;
+              font-family: "Lato";
+              display: flex;
+              align-items: center;
+            }
+            > h3 {
+              font-family: "Poppins";
+              margin-bottom: 5px;
+            }
+            > .username {
+              font-size: 1.1rem;
+            }
+            > .bio {
+              font-size: 1.2rem;
+            }
+            > .connections {
+              font-size: 0.9rem;
+            }
+            > .address {
+            }
+            .edit-profile-btn {
+              margin-top: 10px;
+              font-family: "Lato";
+            }
+          }
+        }
+        .profile-feed-section {
+          border: 1px solid rgba($color: $textGrey, $alpha: 0.5);
+          border-radius: 15px;
+          > h4 {
+            font-family: "Poppins";
+            margin-bottom: 20px;
+          }
         }
       }
-      .details-section {
-        font-family: "Lato";
-
-        .icon {
-          font-size: 1.1rem;
-          margin-right: 10px;
-        }
-
-        > * {
-          margin-bottom: 10px;
-          font-family: "Lato";
-          display: flex;
-          align-items: center;
-        }
-        > h3 {
-          font-family: "Poppins";
-          margin-bottom: 5px;
-        }
-        > .username {
-          font-size: 1.1rem;
-        }
-        > .bio {
-          font-size: 1.2rem;
-        }
-        > .connections {
-          font-size: 0.9rem;
-        }
-        > .address {
-        }
-        .edit-profile-btn {
-          margin-top: 10px;
-          font-family: "Lato";
-        }
-      }
-    }
-    .profile-feed-section {
-      border: 1px solid rgba($color: $textGrey, $alpha: 0.5);
-      > h4 {
-        font-family: "Poppins";
-        margin-bottom: 20px;
+      .sidebar-section {
+        border: 1px solid rgba($color: $textGrey, $alpha: 0.3);
+        border-radius: 15px;
+        height: fit-content;
+        position: sticky;
+        top: 10%;
       }
     }
   }
 }
 .profile_light {
   .container {
-    .profile-section {
-      .details-section {
-        .icon {
+    > .row {
+      .main-section {
+        .profile-section {
+          border: 1px solid rgba($color: $textGrey, $alpha: 0.5);
+          .details-section {
+            .icon {
+            }
+            > .edit-profile-btn {
+              // background-color: $textGrey;
+              border: 1px solid $textGrey;
+            }
+          }
         }
-        > .edit-profile-btn {
-          // background-color: $textGrey;
-          border: 1px solid $textGrey;
+        .profile-feed-section {
+          border-color: rgba($color: $textGrey, $alpha: 0.5);
+          > h4 {
+            color: $darkGrey;
+          }
         }
       }
-    }
-    .profile-feed-section {
-      border-color: rgba($color: $textGrey, $alpha: 0.5);
-      > h4 {
+      .sidebar-section {
+        border-color: rgba($color: $textGrey, $alpha: 0.5);
         color: $darkGrey;
       }
     }
@@ -84,34 +107,47 @@
 
 .profile_dark {
   .container {
-    .profile-section {
-      .details-section {
-        .icon {
-          color: $white;
+    > .row {
+      .main-section {
+        .profile-section {
+          border: 1px solid rgba($color: $textGrey, $alpha: 0.2);
+
+          .details-section {
+            .icon {
+              color: $white;
+            }
+            h3 {
+              color: $white;
+            }
+            > .username {
+              color: $textGrey;
+            }
+            > .bio,
+            > .address,
+            > .connections,
+            > .joined {
+              color: $textHeading;
+            }
+            > .edit-profile-btn {
+              background-color: $grey;
+              border: 0;
+              color: $white;
+            }
+          }
         }
-        h3 {
-          color: $white;
-        }
-        > .username {
-          color: $textGrey;
-        }
-        > .bio,
-        > .address,
-        > .connections,
-        > .joined {
-          color: $textHeading;
-        }
-        > .edit-profile-btn {
-          background-color: $grey;
-          border: 0;
-          color: $white;
+        .profile-feed-section {
+          border-color: rgba($color: $textGrey, $alpha: 0.2);
+          > h4 {
+            color: $textHeading;
+          }
         }
       }
-    }
-    .profile-feed-section {
-      border-color: rgba($color: $textGrey, $alpha: 0.2);
-      > h4 {
-        color: $textHeading;
+      .sidebar-section {
+        border-color: rgba($color: $textGrey, $alpha: 0.2);
+        color: $white;
+        hr {
+          background-color: $textGrey;
+        }
       }
     }
   }
