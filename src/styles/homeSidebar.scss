@@ -5,6 +5,13 @@
     list-style-type: none;
     .side-nav-item {
       margin-bottom: 10px;
+      padding: 10px 0;
+
+      // box-shadow: 1px 1px 5px rgba($color: #fff, $alpha: 1);
+      span {
+        display: grid;
+        place-items: center;
+      }
       .profile-link {
         display: flex;
         justify-content: flex-start;
@@ -18,13 +25,60 @@
         span {
           margin-left: 10px;
           font-family: "Poppins";
+          font-size: 1rem;
+          // font-weight: 500;
         }
       }
       &:not(:first-child) {
         display: grid;
         grid-template-columns: 25px 1fr;
-        column-gap: 12px;
+        column-gap: 15px;
+        font-size: 1rem;
       }
+    }
+    hr {
+      // margin: 5px 0;
+    }
+  }
+}
+
+.home-sidebar-light {
+  .side-nav {
+    .side-nav-item {
+      span {
+      }
+      .profile-link {
+        img {
+        }
+        span {
+          color: $black;
+        }
+      }
+      &:not(:first-child) {
+        color: $darkGrey;
+      }
+    }
+  }
+}
+
+.home-sidebar-dark {
+  .side-nav {
+    .side-nav-item {
+      span {
+      }
+      .profile-link {
+        img {
+        }
+        span {
+          color: $white;
+        }
+      }
+      &:not(:first-child) {
+        color: $textHeading;
+      }
+    }
+    hr {
+      background-color: $textGrey;
     }
   }
 }

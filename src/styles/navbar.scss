@@ -1,5 +1,8 @@
 @import "globals.scss";
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000000;
   .container {
     > a {
       text-decoration: none;
