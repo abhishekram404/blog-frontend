@@ -1,0 +1,30 @@
+@import "globals.scss";
+
+.draft-item {
+  border-radius: 15px;
+  .col {
+    h4 {
+      font-family: "Lato";
+      font-weight: 400;
+    }
+  }
+}
+
+.draft-item-light {
+}
+
+.draft-item-dark {
+  background-color: $darkGrey;
+  .title-row {
+    h4 {
+      color: $textHeading;
+    }
+  }
+  .buttons-row {
+    border-top: 1px solid rgba($color: $textGrey, $alpha: 0.3);
+    .btn-light {
+      background-color: $textGrey;
+      border: none;
+    }
+  }
+}

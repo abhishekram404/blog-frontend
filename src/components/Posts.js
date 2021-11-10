@@ -7,12 +7,7 @@ const FeedItem = React.lazy(() => import("./FeedItem"));
 export default function Posts() {
   const { dark } = useSelector((state) => state.common);
   return (
-    <div
-      className={clsx(
-        "posts py-4 px-1 p-md-4",
-        dark ? "posts-dark" : "posts-light"
-      )}
-    >
+    <div className={clsx("posts", dark ? "posts-dark" : "posts-light")}>
       <h3>My Posts</h3>
       <div className="posts-list p-3">
         <Suspense fallback={<Loading />}>
