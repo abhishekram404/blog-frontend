@@ -11,16 +11,20 @@ import { IoCreateOutline } from "react-icons/io5";
 import Loading from "./Loading";
 import * as Yup from "yup";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { ERROR, INFO, SUCCESS } from "redux/constants";
+import { withRouter, useHistory } from "react-router-dom";
 const CKEditor = React.lazy(() => import("react-ckeditor-component"));
 const Post = React.lazy(() => import("./Post"));
-export default function CreatePost() {
+function CreatePost() {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const { dark } = useSelector((state) => state.common);
   const [tags, setTags] = useState([]);
   const [previewMode, setPreviewMode] = useState(false);
-  const [submitType, setSubmitType] = useState("publish");
   const [formData, setFormData] = useState({
     title: "",
-    category: "",
+    category: "Undefined",
     tags: [],
     content: "",
   });
@@ -71,22 +75,91 @@ export default function CreatePost() {
     );
   };
 
-  const handleSubmit = async (values) => {
-    await generatePreviewData(values);
-    const { data } = await axios.post(
-      "/post/create-post?submitType=publish",
-      formData
-    );
-    console.log(data);
+  const handleSubmit = async (values, props) => {
+    try {
+      await generatePreviewData(values);
+      const { data } = await axios.post(
+        "/post/create-post?submitType=publish",
+        formData
+      );
+
+      const { success, message } = await data;
+      switch (success) {
+        case true:
+          props.resetForm();
+          setFormData({
+            title: "",
+            category: "",
+            tags: [],
+            content: "",
+          });
+
+          dispatch({
+            type: SUCCESS,
+            payload: message,
+          });
+
+          history.push("/");
+          return;
+        case false:
+          return dispatch({
+            type: ERROR,
+            payload: message,
+          });
+        default:
+          return dispatch({
+            type: INFO,
+            payload: message,
+          });
+      }
+    } catch (error) {
+      return dispatch({
+        type: ERROR,
+        payload: error?.response?.data.message,
+      });
+    }
   };
 
-  const handleDraftSubmit = async (values) => {
-    await generatePreviewData(values);
-    const { data } = await axios.post(
-      "/post/create-post?submitType=draft",
-      formData
-    );
-    console.log(data);
+  const handleDraftSubmit = async (props) => {
+    try {
+      await generatePreviewData(props.values);
+      const { data } = await axios.post(
+        "/post/create-post?submitType=draft",
+        formData
+      );
+      const { success, message } = await data;
+      switch (success) {
+        case true:
+          props.resetForm();
+          setFormData({
+            title: "",
+            category: "",
+            tags: [],
+            content: "",
+          });
+          dispatch({
+            type: SUCCESS,
+            payload: message,
+          });
+          history.push("/");
+          return;
+        case false:
+          return dispatch({
+            type: ERROR,
+            payload: message,
+          });
+        default:
+          return dispatch({
+            type: INFO,
+            payload: message,
+          });
+      }
+    } catch (error) {
+      return dispatch({
+        type: ERROR,
+        payload: error?.response?.data.message,
+      });
+    }
   };
 
   return (
@@ -229,7 +302,7 @@ export default function CreatePost() {
                   <button
                     className="btn btn-secondary shadow-none me-3"
                     onClick={() => {
-                      handleDraftSubmit(props.values);
+                      handleDraftSubmit(props);
                     }}
                     type="button"
                   >
@@ -251,3 +324,5 @@ export default function CreatePost() {
     </div>
   );
 }
+
+export default withRouter(CreatePost);

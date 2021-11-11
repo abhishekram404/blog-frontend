@@ -25,7 +25,7 @@ const Register = React.lazy(() => import("components/Register"));
 const Login = React.lazy(() => import("components/Login"));
 const CreatePost = React.lazy(() => import("components/CreatePost"));
 const Profile = React.lazy(() => import("components/Profile"));
-const Posts = React.lazy(() => import("components/Posts"));
+// const Posts = React.lazy(() => import("components/Posts"));
 function App() {
   const alert = useAlert();
   const dispatch = useDispatch();
@@ -72,7 +72,6 @@ function App() {
         break;
     }
   }, [type, message]);
-  // console.log(history);
 
   return (
     <Router>
@@ -87,7 +86,6 @@ function App() {
             <Route path="/login" component={Login} />
             <ProtectedRoute path="/create-post" component={CreatePost} />
             <ProtectedRoute path="/profile" component={Profile} />
-            {/* <ProtectedRoute path="/" component={Profile} /> */}
             <Route path="*" component={Error404} />
           </Switch>
         </Suspense>
