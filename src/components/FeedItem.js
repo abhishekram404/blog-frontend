@@ -12,7 +12,15 @@ import "styles/feedItem.scss";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 import { AiOutlineUserAdd } from "react-icons/ai";
-const FeedItem = ({ selfMode }) => {
+const FeedItem = ({
+  title,
+  content,
+  category,
+  author,
+  likes,
+  comments,
+  selfMode,
+}) => {
   const { dark } = useSelector((state) => state.common);
   return (
     <div
@@ -30,22 +38,18 @@ const FeedItem = ({ selfMode }) => {
       </div>
       <div className="card-body post-cont">
         <Link to="/post">
-          <h3 className="card-title post-title">Post title</h3>
-          <p className="card-text post-body">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque
-            similique aliquid rerum ipsam totam animi possimus, culpa corporis
-            hic pariatur?
-          </p>
+          <h3 className="card-title post-title">{title}</h3>
+          <p className="card-text post-body">{content}</p>
         </Link>
       </div>
       <div className="card-body interaction-cont py-1 row align-items-center justify-content-center">
         <div className="col-1">
           <BiLike />
-          <span>2k</span>
+          <span>{likes}</span>
         </div>
         <div className="col-1">
           <BiComment />
-          <span>20k</span>
+          <span>{comments}</span>
         </div>
         <div className="col-1 single-childed">
           <IoIosShareAlt />
@@ -74,9 +78,9 @@ const FeedItem = ({ selfMode }) => {
                 />
               </div>
               <div className="col-7 col-sm-7 px-1 px-sm-3 px-md-3 d-flex flex-column">
-                <span className="author-name">Abhishek Ram</span>
+                <span className="author-name">{author.name}</span>
                 <small className="author-username">
-                  <Link to="/user/abhishek">@abhishek</Link>
+                  <Link to="/user/abhishek">@{author.username}</Link>
                 </small>
               </div>
               <div className="col col-sm-3 ms-auto px-0">

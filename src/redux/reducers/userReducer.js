@@ -1,11 +1,20 @@
-const { defaults } = require("lodash-es");
-const { REGISTER_SUCCESSFUL } = require("redux/constants");
+const {
+  FETCH_USER_INFO_SUCCESS,
+  FETCH_USER_INFO_FAILURE,
+} = require("redux/constants");
 
 const userReducer = (state = {}, action) => {
   switch (action.type) {
-    case REGISTER_SUCCESSFUL:
-      return {};
-      defaults: return state;
+    case FETCH_USER_INFO_SUCCESS:
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case FETCH_USER_INFO_FAILURE:
+      return state;
+
+    default:
+      return state;
   }
 };
 

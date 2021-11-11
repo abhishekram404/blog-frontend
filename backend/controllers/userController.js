@@ -169,3 +169,30 @@ module.exports.checkUsernameAvailability = async (req, res) => {
     });
   } catch (error) {}
 };
+
+module.exports.fetchUserInfo = async (req, res) => {
+  try {
+    const { authUserId } = await req;
+    if (!authUserId) {
+      return res.send({
+        success: false,
+        message: "Unauthorized request!",
+      });
+    }
+    const u = await User.findById(
+      authUserId,
+      "name bio address dob username email followers following"
+    ).lean();
+    return res.send({
+      success: true,
+      message: "Fetch user info successful.",
+      details: u,
+    });
+  } catch (error) {
+    console.log(error.message);
+    return res.send({
+      success: false,
+      message: "Failed to fetch user info.",
+    });
+  }
+};

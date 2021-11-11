@@ -1,12 +1,22 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
 import "styles/Homepage.scss";
 import clsx from "clsx";
-import { useSelector } from "react-redux";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
 import Loading from "./Loading";
+import { fetch_posts } from "redux/actions/postActions";
+import { fetch_user_info } from "redux/actions/userActions";
 const FeedItem = React.lazy(() => import("./FeedItem"));
 const HomeSidebar = React.lazy(() => import("./HomeSidebar"));
 export default function Homepage() {
+  const dispatch = useDispatch();
   const { dark, isUserLoggedIn } = useSelector((state) => state.common);
+  const { fetchedPosts } = useSelector((state) => state.post);
+  const { user } = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(fetch_posts());
+    dispatch(fetch_user_info());
+  }, []);
 
   return (
     <div
@@ -20,12 +30,17 @@ export default function Homepage() {
           <div className="col-12 feed col-md-9">
             <h2 className="page-title">Feed</h2>
             <Suspense fallback={<Loading />}>
-              <FeedItem />
-              <FeedItem />
-              <FeedItem />
-              <FeedItem />
-              <FeedItem />
-              <FeedItem />
+              {fetchedPosts.map((post) => (
+                <FeedItem
+                  title={post.title}
+                  content={post.content}
+                  likes={post.likes.length}
+                  comments={post.comments.length}
+                  category={post.category}
+                  author={post.author}
+                  key={post._id}
+                />
+              ))}
             </Suspense>
           </div>
 
