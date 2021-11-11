@@ -93,7 +93,7 @@ module.exports.login = async (req, res) => {
         details: null,
       });
     }
-    const token = await foundUser.generateToken();
+    const token = await foundUser.generateToken(foundUser._id);
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge: 900000000,
@@ -134,4 +134,38 @@ module.exports.logout = async (req, res) => {
       details: null,
     });
   }
+};
+
+module.exports.checkUsernameAvailability = async (req, res) => {
+  try {
+    const { username } = await req.query;
+
+    const usernameTaken = await User.exists({ username });
+
+    const isValid = /^(?=[a-z0-9_]{3,20}$)(?!.*[_]{2})[^_].*[^_]$/.test(
+      username
+    );
+
+    if (!isValid) {
+      return res.status(400).send({
+        success: false,
+        message: "Invalid username",
+        details: null,
+      });
+    }
+
+    if (usernameTaken) {
+      return res.status(400).send({
+        success: false,
+        message: "Username is not available. Please try another username.",
+        details: null,
+      });
+    }
+
+    return res.status(200).send({
+      success: true,
+      message: "Username is available.",
+      details: null,
+    });
+  } catch (error) {}
 };

@@ -89,15 +89,14 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-userSchema.method("generateToken", () => {
+userSchema.methods.generateToken = (id) => {
   return jwt.sign(
     {
-      _id: this._id,
-      username: this.username,
+      _id: id,
     },
-    process.env.JSON_SECRET || "VERYSECRETANDSTRONGKEY"
+    process.env.JWT_SECRET || "VERYSECRETANDSTRONGKEY"
   );
-});
+};
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;

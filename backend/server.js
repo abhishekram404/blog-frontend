@@ -3,8 +3,10 @@ const mongoose = require("mongoose");
 const app = express();
 const cors = require("cors");
 const userRoutes = require("./routes/userRoutes");
+const postRoutes = require("./routes/postRoutes");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 app.use(
@@ -13,6 +15,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(cookieParser());
 app.use(
   bodyParser.json({
     extended: true,
@@ -39,6 +42,7 @@ mongoose.connect("mongodb://localhost:27017/blog", (err) => {
 });
 
 app.use("/api/user", userRoutes);
+app.use("/api/post", postRoutes);
 
 const port = process.env.PORT || 4000;
 app.listen(port, (err) => {

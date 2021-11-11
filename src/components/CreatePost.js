@@ -4,22 +4,31 @@ import "styles/createPost.scss";
 import { WithContext as ReactTags } from "react-tag-input";
 import { pascalCase } from "change-case";
 import { useSelector } from "react-redux";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { debounce as db } from "lodash";
 import { AiOutlineEye } from "react-icons/ai";
 import { IoCreateOutline } from "react-icons/io5";
 import Loading from "./Loading";
+import * as Yup from "yup";
+import axios from "axios";
 const CKEditor = React.lazy(() => import("react-ckeditor-component"));
 const Post = React.lazy(() => import("./Post"));
 export default function CreatePost() {
   const { dark } = useSelector((state) => state.common);
   const [tags, setTags] = useState([]);
   const [previewMode, setPreviewMode] = useState(false);
+  const [submitType, setSubmitType] = useState("publish");
   const [formData, setFormData] = useState({
     title: "",
     category: "",
     tags: [],
     content: "",
+  });
+  const validatonSchema = Yup.object({
+    title: Yup.string().required("Post title is required."),
+    category: Yup.string(),
+    tags: Yup.array(),
+    content: Yup.string(),
   });
 
   const KeyCodes = {
@@ -62,8 +71,22 @@ export default function CreatePost() {
     );
   };
 
-  const handleSubmit = (values) => {
-    generatePreviewData(values);
+  const handleSubmit = async (values) => {
+    await generatePreviewData(values);
+    const { data } = await axios.post(
+      "/post/create-post?submitType=publish",
+      formData
+    );
+    console.log(data);
+  };
+
+  const handleDraftSubmit = async (values) => {
+    await generatePreviewData(values);
+    const { data } = await axios.post(
+      "/post/create-post?submitType=draft",
+      formData
+    );
+    console.log(data);
   };
 
   return (
@@ -106,7 +129,11 @@ export default function CreatePost() {
             />
           </Suspense>
         ) : (
-          <Formik initialValues={formData} onSubmit={handleSubmit}>
+          <Formik
+            initialValues={formData}
+            onSubmit={handleSubmit}
+            validationSchema={validatonSchema}
+          >
             {(props) => (
               <Form
                 className="p-3"
@@ -126,6 +153,9 @@ export default function CreatePost() {
                     className="form-control shadow-none post-title"
                     placeholder="New post title here"
                   />
+                  <small className="text-danger">
+                    <ErrorMessage name="title" />
+                  </small>
                 </div>
                 <div className="mb-3 tags-cont">
                   <label htmlFor="post-tags" className="form-label">
@@ -196,12 +226,19 @@ export default function CreatePost() {
                   </Suspense>
                 </div>
                 <div className="d-flex justify-content-end">
-                  <button className="btn btn-secondary shadow-none me-3">
+                  <button
+                    className="btn btn-secondary shadow-none me-3"
+                    onClick={() => {
+                      handleDraftSubmit(props.values);
+                    }}
+                    type="button"
+                  >
                     Save draft
                   </button>
                   <button
                     type="submit"
                     className="btn btn-primary  shadow-none"
+                    disabled={!props.isValid}
                   >
                     Post
                   </button>

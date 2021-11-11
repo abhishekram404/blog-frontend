@@ -7,12 +7,13 @@ import * as Yup from "yup";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { ERROR, SUCCESS, ALERT } from "redux/constants";
-import { Redirect, useLocation } from "react-router";
-export default function Register(props) {
+import { Redirect } from "react-router";
+import { debounce as db } from "lodash-es";
+export default function Register() {
   const dispatch = useDispatch();
-  const location = useLocation();
   const [isSubmitting, setSubmitting] = useState(false);
   const { dark, isUserLoggedIn } = useSelector((state) => state.common);
+  const [usernameAvailable, setUsernameAvailable] = useState(undefined);
   const initialValues = {
     name: "",
     username: "",
@@ -28,6 +29,10 @@ export default function Register(props) {
     username: Yup.string()
       .min(3, "Username too short.")
       .max(32, "Username too long.")
+      .matches(
+        /^(?=[a-z0-9_]{3,20}$)(?!.*[_]{2})[^_].*[^_]$/,
+        "Username must only contain lowercase letters(a-z), numbers(0-9), and underscore, and must not contain more than one trailing underscore or underscore  at the end.  "
+      )
       .required("Username is required."),
     email: Yup.string().email("Invalid email").required("Email is required."),
     password: Yup.string()
@@ -58,6 +63,23 @@ export default function Register(props) {
       dispatch({ type: ERROR, payload: error.response.data.message });
     }
   };
+
+  const handleUsernameChange = db(async (e, setStatus) => {
+    try {
+      const { data } = await axios.get(
+        "/user/checkUsernameAvailability?username=" + e.target.value
+      );
+      setStatus({
+        username: data.message,
+      });
+      setUsernameAvailable(data.success);
+    } catch (error) {
+      setStatus({
+        username: error.response.data.message,
+      });
+      setUsernameAvailable(error.response.data.success);
+    }
+  }, 800);
 
   if (isUserLoggedIn) {
     return <Redirect to="/" />;
@@ -104,9 +126,20 @@ export default function Register(props) {
                   className="form-control shadow-none"
                   required={true}
                   name="username"
+                  onKeyUp={(e) => {
+                    handleUsernameChange(e, errors.setStatus);
+                  }}
                 />
-                <small className="error-message text-danger">
+                <small className="error-message text-danger d-block">
                   <ErrorMessage name="username" />
+                </small>
+                <small
+                  className={clsx(
+                    "error-message d-block",
+                    usernameAvailable ? "text-success" : "text-danger"
+                  )}
+                >
+                  {errors.status?.username && errors.status.username}
                 </small>
               </div>
 

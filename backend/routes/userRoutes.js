@@ -7,4 +7,8 @@ router.get("/", (req, res) => {
 router.post("/register", userController.register);
 router.post("/login", userController.login);
 router.post("/logout", userController.logout);
+router.get(
+  "/checkUsernameAvailability",
+  userController.checkUsernameAvailability
+);
 module.exports = router;

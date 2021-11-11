@@ -6,7 +6,8 @@ import Loading from "./Loading";
 const FeedItem = React.lazy(() => import("./FeedItem"));
 const HomeSidebar = React.lazy(() => import("./HomeSidebar"));
 export default function Homepage() {
-  const { dark } = useSelector((state) => state.common);
+  const { dark, isUserLoggedIn } = useSelector((state) => state.common);
+
   return (
     <div
       className={clsx(
@@ -29,13 +30,15 @@ export default function Homepage() {
           </div>
 
           {/* Sidebar is commented for now */}
-          <div className="col-md-3 sidebar-section p-3 d-none d-md-block">
-            Quick links
-            <hr className="mt-2 mb-3" />
-            <Suspense fallback={<Loading />}>
-              <HomeSidebar />
-            </Suspense>
-          </div>
+          {isUserLoggedIn && (
+            <div className="col-md-3 sidebar-section p-3 d-none d-md-block">
+              Quick links
+              <hr className="mt-2 mb-3" />
+              <Suspense fallback={<Loading />}>
+                <HomeSidebar />
+              </Suspense>
+            </div>
+          )}
         </div>
       </div>
     </div>
