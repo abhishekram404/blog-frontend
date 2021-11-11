@@ -5,3 +5,12 @@
     border-radius: 15px;
   }
 }
+
+.drafts-light {
+  color: $darkGrey;
+}
+.drafts-dark {
+  h3 {
+    color: $textHeading;
+  }
+}

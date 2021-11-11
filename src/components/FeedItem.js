@@ -5,13 +5,13 @@ import {
   MdOutlineBookmarkAdd,
   MdOutlineBookmarkAdded,
 } from "react-icons/md";
-// import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { BiComment, BiLike } from "react-icons/bi";
 import { IoIosShareAlt } from "react-icons/io";
 import featuredImage from "assets/featured.jpg";
 import "styles/feedItem.scss";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
+import { AiOutlineUserAdd } from "react-icons/ai";
 const FeedItem = ({ selfMode }) => {
   const { dark } = useSelector((state) => state.common);
   return (
@@ -81,7 +81,7 @@ const FeedItem = ({ selfMode }) => {
               </div>
               <div className="col col-sm-3 ms-auto px-0">
                 <button className="btn shadow-none  follow-btn float-end">
-                  <MdNotificationAdd className="icon " />
+                  <AiOutlineUserAdd className="icon " />
                 </button>
               </div>
             </>
