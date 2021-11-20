@@ -20,7 +20,11 @@ const postSchema = new mongoose.Schema(
       type: [String],
       required: true,
     },
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    author: {
+      authorId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+      authorName: { type: String },
+      authorUsername: { type: String },
+    },
     published: {
       type: Boolean,
       default: false,

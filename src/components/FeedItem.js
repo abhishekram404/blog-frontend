@@ -78,9 +78,9 @@ const FeedItem = ({
                 />
               </div>
               <div className="col-7 col-sm-7 px-1 px-sm-3 px-md-3 d-flex flex-column">
-                <span className="author-name">{author.name}</span>
+                <span className="author-name">{author.authorName}</span>
                 <small className="author-username">
-                  <Link to="/user/abhishek">@{author.username}</Link>
+                  <Link to="/user/abhishek">@{author.authorUsername}</Link>
                 </small>
               </div>
               <div className="col col-sm-3 ms-auto px-0">

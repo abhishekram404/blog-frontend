@@ -173,6 +173,7 @@ module.exports.checkUsernameAvailability = async (req, res) => {
 module.exports.fetchUserInfo = async (req, res) => {
   try {
     const { authUserId } = await req;
+
     if (!authUserId) {
       return res.send({
         success: false,
@@ -181,7 +182,7 @@ module.exports.fetchUserInfo = async (req, res) => {
     }
     const u = await User.findById(
       authUserId,
-      "name bio address dob username email followers following"
+      "name bio address dob username email followers following joined"
     ).lean();
     return res.send({
       success: true,

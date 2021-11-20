@@ -2,7 +2,15 @@ const Post = require("../models/Post");
 const User = require("../models/User");
 module.exports.createPost = async (req, res) => {
   try {
-    const { title, tags, category, content } = await req.body;
+    const {
+      title,
+      tags,
+      category,
+      content,
+      authorId,
+      authorName,
+      authorUsername,
+    } = await req.body;
 
     const { submitType } = await req.query;
 
@@ -20,11 +28,15 @@ module.exports.createPost = async (req, res) => {
       content,
       category: category.trim(),
       tags,
-      author: req.authUserId,
+      author: {
+        authorId,
+        authorName,
+        authorUsername,
+      },
       published: submitType === "draft" ? false : true,
     });
     await User.findByIdAndUpdate(
-      req.authUserId,
+      authorId,
       {
         $push: { posts: newPost._id },
       },
@@ -48,28 +60,31 @@ module.exports.createPost = async (req, res) => {
 
 module.exports.fetchHomepagePosts = async (req, res) => {
   try {
+    const { skip } = await req.query;
+    // console.log("skip", skip);
     const posts = await Post.find(
-      {},
+      { published: true },
       "title content category author likes comments"
     )
-      .sort({ _createAt: -1 })
-      .limit(5)
+      .sort({ _id: -1 })
+      .skip(skip)
+      .limit(3)
       .lean();
 
-    let result = posts.map(async (post) => {
-      let author = await User.findById(post.author, "name username").lean();
-      return {
-        ...post,
-        author,
-      };
+    // let result = posts.map(async (post) => {
+    //   let author = await User.findById(post.author, "name username").lean();
+    //   return {
+    //     ...post,
+    //     author,
+    //   };
+    // });
+    // Promise.all(result).then((r) => {
+    return res.send({
+      success: true,
+      message: "Posts fetched successfully",
+      details: posts,
     });
-    Promise.all(result).then((r) => {
-      return res.send({
-        success: true,
-        message: "Posts fetched successfully",
-        details: r,
-      });
-    });
+    // });
 
     // console.log(await result);
 
@@ -92,5 +107,43 @@ module.exports.fetchHomepagePosts = async (req, res) => {
     // console.log(r);
   } catch (error) {
     console.log(error);
+    return res.send({
+      success: true,
+      message: "Something went wrong while fetching posts.",
+      details: null,
+    });
+  }
+};
+
+module.exports.fetchProfilePosts = async (req, res) => {
+  try {
+    const { skip, profile } = await req.query;
+    const posts = await Post.find(
+      {
+        published: true,
+        // author: {
+        //   authorUsername: profile,
+        // },
+      },
+      "title content category author likes comments"
+    )
+      .sort({ _id: -1 })
+      .skip(skip ?? 0)
+      .limit(3)
+      .lean();
+
+    console.log(posts);
+    return res.send({
+      success: true,
+      message: "Posts fetched successfully",
+      details: posts,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: true,
+      message: "Something went wrong while fetching posts.",
+      details: null,
+    });
   }
 };

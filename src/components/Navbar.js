@@ -11,6 +11,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 export default function Navbar() {
   const dispatch = useDispatch();
   const { dark, isUserLoggedIn } = useSelector((state) => state.common);
+  const { user } = useSelector((state) => state.user);
   const [navExpanded, setNavExpanded] = useState(false);
 
   const resize = () => {
@@ -70,7 +71,7 @@ export default function Navbar() {
                       src="https://avatars.dicebear.com/api/male/john.svg?mood[]=happy"
                       alt=""
                     />
-                    <span>Abhishek Ram</span>
+                    <span>{user?.name ? user.name.split(" ")[0] : null}</span>
                   </Link>
                 </li>
                 <li

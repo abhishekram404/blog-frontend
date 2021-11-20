@@ -20,6 +20,7 @@ function CreatePost() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { dark } = useSelector((state) => state.common);
+  const { user } = useSelector((state) => state.user);
   const [tags, setTags] = useState([]);
   const [previewMode, setPreviewMode] = useState(false);
   const [formData, setFormData] = useState({
@@ -70,7 +71,12 @@ function CreatePost() {
       Object.assign(
         formData,
         { title: values.title, category: values.category },
-        { tags: tagsList }
+        { tags: tagsList },
+        {
+          authorId: user._id,
+          authorName: user.name,
+          authorUsername: user.username,
+        }
       )
     );
   };

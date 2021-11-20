@@ -1,6 +1,12 @@
 import axios from "axios";
 
-const { TOGGLE_DARK_MODE, LOGOUT, SUCCESS, ERROR } = require("redux/constants");
+const {
+  TOGGLE_DARK_MODE,
+  LOGOUT,
+  SUCCESS,
+  ERROR,
+  CLEAR_ALL,
+} = require("redux/constants");
 
 export const toggle_dark_mode = () => {
   return {
@@ -16,6 +22,9 @@ export const logout = () => {
         case true:
           dispatch({
             type: LOGOUT,
+          });
+          dispatch({
+            type: CLEAR_ALL,
           });
           dispatch({
             type: SUCCESS,

@@ -30,17 +30,21 @@ export default function Homepage() {
           <div className="col-12 feed col-md-9">
             <h2 className="page-title">Feed</h2>
             <Suspense fallback={<Loading />}>
-              {fetchedPosts.map((post) => (
-                <FeedItem
-                  title={post.title}
-                  content={post.content}
-                  likes={post.likes.length}
-                  comments={post.comments.length}
-                  category={post.category}
-                  author={post.author}
-                  key={post._id}
-                />
-              ))}
+              {fetchedPosts && fetchedPosts.length > 0 ? (
+                fetchedPosts.map((post) => (
+                  <FeedItem
+                    title={post.title}
+                    content={post.content}
+                    likes={post.likes.length}
+                    comments={post.comments.length}
+                    category={post.category}
+                    author={post.author}
+                    key={post._id}
+                  />
+                ))
+              ) : (
+                <h4>No posts</h4>
+              )}
             </Suspense>
           </div>
 

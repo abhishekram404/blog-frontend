@@ -11,7 +11,7 @@ import { AiOutlineHome } from "react-icons/ai";
 export default function HomeSidebar() {
   const location = useLocation();
   const { dark } = useSelector((state) => state.common);
-
+  const { user } = useSelector((state) => state.user);
   const [active, setActive] = useState("");
 
   const p =
@@ -63,7 +63,12 @@ export default function HomeSidebar() {
               src="https://avatars.dicebear.com/api/male/john.svg?mood[]=happy"
               alt=""
             />
-            <span>Abhishek Ram</span>
+            {user?.name && (
+              <span>
+                {user.name.split(" ")[0]}{" "}
+                {user.name.split(" ")[user.name.split(" ").length - 1]}
+              </span>
+            )}
           </Link>
         </li>
         <li className={clsx("side-nav-item", active === "" && "active")}>
