@@ -14,7 +14,7 @@ export default function Homepage() {
   const { fetchedPosts } = useSelector((state) => state.post);
   const { user } = useSelector((state) => state.user);
   useEffect(() => {
-    dispatch(fetch_posts());
+    dispatch(fetch_posts(fetchedPosts.length));
     dispatch(fetch_user_info());
   }, []);
 

@@ -61,13 +61,12 @@ module.exports.createPost = async (req, res) => {
 module.exports.fetchHomepagePosts = async (req, res) => {
   try {
     const { skip } = await req.query;
-    // console.log("skip", skip);
     const posts = await Post.find(
       { published: true },
       "title content category author likes comments"
     )
       .sort({ _id: -1 })
-      .skip(skip)
+      .skip(Number(skip))
       .limit(3)
       .lean();
 
@@ -79,6 +78,7 @@ module.exports.fetchHomepagePosts = async (req, res) => {
     //   };
     // });
     // Promise.all(result).then((r) => {
+    console.log(posts);
     return res.send({
       success: true,
       message: "Posts fetched successfully",
