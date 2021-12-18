@@ -16,14 +16,20 @@ const postReducer = (
     case FETCH_POST_SUCCESS:
       return {
         ...state,
-        fetchedPosts: [...state.fetchedPosts, ...action.payload],
+        fetchedPosts: [
+          // ...state.fetchedPosts,
+          ...action.payload,
+        ],
       };
     case FETCH_POST_FAILURE:
       return state;
     case FETCH_PROFILE_POST_SUCCESS:
       return {
         ...state,
-        profilePosts: [...state.profilePosts, ...action.payload],
+        profilePosts: [
+          // ...state.profilePosts,
+          ...action.payload,
+        ],
       };
     case FETCH_PROFILE_POST_FAILURE:
       return state;
