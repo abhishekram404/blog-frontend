@@ -25,11 +25,10 @@ const Register = React.lazy(() => import("components/Register"));
 const Login = React.lazy(() => import("components/Login"));
 const CreatePost = React.lazy(() => import("components/CreatePost"));
 const Profile = React.lazy(() => import("components/Profile"));
-// const Posts = React.lazy(() => import("components/Posts"));
 function App() {
   const alert = useAlert();
   const dispatch = useDispatch();
-  const { dark, isUserLoggedIn } = useSelector((state) => state.common);
+  const { dark } = useSelector((state) => state.common);
   const { type, message } = useSelector((state) => state.alert);
   const alertOnClose = () => {
     dispatch({ type: CLEAR_ALERT });
