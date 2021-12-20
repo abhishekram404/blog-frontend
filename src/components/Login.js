@@ -27,7 +27,9 @@ export default function Login() {
   const handleSubmit = async (values) => {
     try {
       setSubmitting(true);
-      const { data } = await axios.post("/user/login", values);
+      const { data } = await axios.post("/user/login", values, {
+        withCredentials: true,
+      });
       setSubmitting(false);
 
       switch (data.success) {
