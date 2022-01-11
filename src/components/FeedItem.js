@@ -12,6 +12,7 @@ import "styles/feedItem.scss";
 import { useSelector } from "react-redux";
 import clsx from "clsx";
 import { AiOutlineUserAdd } from "react-icons/ai";
+import parser from "html-react-parser";
 const FeedItem = ({
   title,
   content,
@@ -30,7 +31,7 @@ const FeedItem = ({
       )}
     >
       <div className="thumbnail-cont">
-        <img
+        <img 
           src={featuredImage}
           alt="Thumbnail"
           className="card-img-top thumbnail-image"
@@ -39,7 +40,7 @@ const FeedItem = ({
       <div className="card-body post-cont">
         <Link to="/post">
           <h3 className="card-title post-title">{title}</h3>
-          <p className="card-text post-body">{content}</p>
+          <p className="card-text post-body">{parser(content)}</p>
         </Link>
       </div>
       <div className="card-body interaction-cont py-1 row align-items-center justify-content-center">
