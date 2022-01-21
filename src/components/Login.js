@@ -12,10 +12,13 @@ import {
   SUCCESS,
 } from "redux/constants";
 import { Redirect } from "react-router";
+import { useCookies } from "react-cookie";
 
 export default function Login() {
   const [isSubmitting, setSubmitting] = useState(false);
+  const [jwtCookie, setJwtCookie] = useCookies(["jwt"]);
 
+  const isProduction = process.env.REACT_APP_NODE_ENV === "production";
   const dispatch = useDispatch();
   const { dark, isUserLoggedIn } = useSelector((state) => state.common);
   const loginSchema = Yup.object({
@@ -27,11 +30,25 @@ export default function Login() {
   const handleSubmit = async (values) => {
     try {
       setSubmitting(true);
-      const { data } = await axios.post("/user/login", values);
+      const { data, headers } = await axios.post("/user/login", values);
       setSubmitting(false);
 
       switch (data.success) {
         case true:
+          console.log(headers);
+          const token = headers.authorization.split(" ")[1];
+          const secure = Boolean(Number(headers.secure));
+          const domain = headers.domain;
+          const maxAge = Number(headers.maxAge);
+          setJwtCookie("jwt", token, {
+            path: "/",
+            httpOnly: true,
+            secure,
+            domain,
+            maxAge,
+            sameSite: "None",
+          });
+          console.log(domain);
           dispatch({ type: AUTHENTICATED });
           return dispatch({ type: SUCCESS, payload: data.message });
         case false:

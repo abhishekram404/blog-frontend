@@ -14,7 +14,6 @@ export default function HomeSidebar() {
   const { user } = useSelector((state) => state.user);
   const [active, setActive] = useState("");
 
-  console.log(user);
   const p =
     location.pathname.split("/")[location.pathname.split("/").length - 1];
 

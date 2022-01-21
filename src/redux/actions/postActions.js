@@ -13,7 +13,6 @@ export const fetch_posts = (skip = 0) => {
 
     const { success, details } = await data;
 
-    console.log(success, details);
     switch (success) {
       case true:
         return dispatch({

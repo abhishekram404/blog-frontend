@@ -7,6 +7,7 @@ import store from "redux/store";
 import axios from "axios";
 import { transitions, positions, Provider as AlertProvider } from "react-alert";
 import AlertTemplate from "react-alert-template-basic";
+import { CookiesProvider } from "react-cookie";
 const isProduction = process.env.REACT_APP_NODE_ENV === "production";
 axios.defaults.baseURL = isProduction
   ? "https://react-blog-restapi.herokuapp.com/api/"
@@ -15,15 +16,17 @@ axios.defaults.withCredentials = true;
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AlertProvider
-        transition={transitions.FADE}
-        position={positions.BOTTOM_LEFT}
-        template={AlertTemplate}
-        timeout={5000}
-        offset="30px"
-      >
-        <App />
-      </AlertProvider>
+      <CookiesProvider>
+        <AlertProvider
+          transition={transitions.FADE}
+          position={positions.BOTTOM_LEFT}
+          template={AlertTemplate}
+          timeout={5000}
+          offset="30px"
+        >
+          <App />
+        </AlertProvider>
+      </CookiesProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
