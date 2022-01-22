@@ -1,4 +1,13 @@
-# A blog app created in MERN stack (under-development)
+# DISCONTINUED (Check [this](https://github.com/abhishekram404/blog) instead)
+## A blog app created in MERN stack (discontinued)
 
-## TODO 
-``` Send the jwt token in header then set it as cookie on the client  side, because it is impossible to set cookie on cross domain. ```
+This is just the frontend of the blog app.
+
+## The [frontend](https://github.com/abhishekram404/blog-frontend) and the [REST API](https://github.com/abhishekram404/blog-api) repository have been combined into [a new repository](https://github.com/abhishekram404/blog). 
+
+
+Front end: https://github.com/abhishekram404/blog-frontend
+REST API: https://github.com/abhishekram404/blog-api
+
+Both above mentioned repos have been combined to form a new one i.e. https://github.com/abhishekram404/blog
+
